@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container-fluid py-4">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-2">
+        <div class="card shadow-sm mb-4">
+          <div class="card-body text-center">
+            <i class="fas fa-shopping-cart fa-4x text-success"></i>
+            <h5 class="mt-2">Buyer Panel</h5>
+            <p class="text-muted small"><%= user.email %></p>
+          </div>
+        </div>
+        
+        <div class="list-group shadow-sm">
+          <a href="/dashboard/buyer" class="list-group-item list-group-item-action active bg-success border-success">
+            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+          </a>
+          <a href="/dashboard/buyer/orders" class="list-group-item list-group-item-action">
+            <i class="fas fa-list me-2"></i>Bulk Orders
+          </a>
+          <a href="/dashboard/buyer/history" class="list-group-item list-group-item-action">
+            <i class="fas fa-history me-2"></i>Purchase History
+          </a>
+          <a href="/dashboard/buyer/invoices" class="list-group-item list-group-item-action">
+            <i class="fas fa-file-invoice me-2"></i>Invoices
+          </a>
+          <a href="/dashboard/buyer/saved" class="list-group-item list-group-item-action">
+            <i class="fas fa-bookmark me-2"></i>Saved Products
+          </a>
+          <a href="/dashboard/buyer/negotiations" class="list-group-item list-group-item-action">
+            <i class="fas fa-handshake me-2"></i>Negotiations
+          </a>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-md-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4><i class="fas fa-shopping-cart text-success me-2"></i>Buyer Dashboard</h4>
+          <div>
+            <span class="badge bg-success me-2"><i class="fas fa-circle me-1"></i>Active</span>
+            <span class="text-muted"><%= new Date().toLocaleString() %></span>
+          </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card bg-primary text-white">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6>Bulk Orders</h6>
+                    <h3 class="mb-0"><%= bulkOrders %></h3>
+                  </div>
+                  <i class="fas fa-truck fa-2x opacity-50"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card bg-success text-white">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6>Total Orders</h6>
+                    <h3 class="mb-0"><%= totalOrders %></h3>
+                  </div>
+                  <i class="fas fa-shopping-bag fa-2x opacity-50"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card bg-warning text-white">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6>Saved Products</h6>
+                    <h3 class="mb-0"><%= saved %></h3>
+                  </div>
+                  <i class="fas fa-bookmark fa-2x opacity-50"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card bg-info text-white">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6>Pending Negotiations</h6>
+                    <h3 class="mb-0">3</h3>
+                  </div>
+                  <i class="fas fa-handshake fa-2x opacity-50"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Orders -->
+        <div class="card shadow-sm">
+          <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h6 class="mb-0"><i class="fas fa-clock text-success me-2"></i>Recent Orders</h6>
+            <a href="/dashboard/buyer/orders" class="btn btn-sm btn-outline-success">View All</a>
+          </div>
+          <div class="card-body">
+            <% if (recentOrders && recentOrders.length) { %>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Order #</th>
+                      <th>Farmer</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Date</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% recentOrders.forEach(order => { %>
+                      <tr>
+                        <td><%= order.order_number %></td>
+                        <td>Farmer #<%= order.farmer_id || 'N/A' %></td>
+                        <td>$<%= order.final_amount %></td>
+                        <td>
+                          <span class="badge bg-<%= order.status === 'delivered' ? 'success' : order.status === 'cancelled' ? 'danger' : order.status === 'pending' ? 'warning' : 'info' %>">
+                            <%= order.status %>
+                          </span>
+                        </td>
+                        <td><%= new Date(order.created_at).toLocaleDateString() %></td>
+                        <td>
+                          <a href="/orders/<%= order.id %>" class="btn btn-sm btn-outline-success">
+                            <i class="fas fa-eye"></i>
+                          </a>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  </tbody>
+                </table>
+              </div>
+            <% } else { %>
+              <p class="text-muted text-center">No orders yet</p>
+            <% } %>
+          </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="row g-4 mt-3">
+          <div class="col-md-6">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <i class="fas fa-shopping-bag fa-3x text-success mb-3"></i>
+                <h5>Place Bulk Order</h5>
+                <p class="text-muted">Order large quantities for your business</p>
+                <a href="/products" class="btn btn-success">Browse Products</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <i class="fas fa-handshake fa-3x text-warning mb-3"></i>
+                <h5>Request Negotiation</h5>
+                <p class="text-muted">Get special pricing on bulk orders</p>
+                <button class="btn btn-outline-success">Start Negotiation</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container py-4">
+    <div class="card shadow-sm">
+      <div class="card-body p-4">
+        <div class="row align-items-center">
+          <div class="col-md-3 text-center">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" 
+                 alt="Farmer" class="rounded-circle img-fluid" style="width: 150px; height: 150px; object-fit: cover;">
+            <h4 class="mt-2"><%= farmer.first_name %> <%= farmer.last_name %></h4>
+            <span class="badge bg-success"><i class="fas fa-check-circle me-1"></i>Verified Farmer</span>
+          </div>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-4">
+                <h6>Farm</h6>
+                <p><%= farm ? farm.name : 'No farm registered' %></p>
+              </div>
+              <div class="col-md-4">
+                <h6>Location</h6>
+                <p><i class="fas fa-map-marker-alt me-1"></i><%= farm ? farm.city || 'N/A' : 'N/A' %></p>
+              </div>
+              <div class="col-md-4">
+                <h6>Products</h6>
+                <p><%= products ? products.length : 0 %> products</p>
+              </div>
+            </div>
+            <div class="mt-2">
+              <p><%= farmer.bio || 'Passionate farmer dedicated to providing fresh, organic produce.' %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="mt-4">
+      <h5><i class="fas fa-box text-success me-2"></i>Products from this Farmer</h5>
+      <div class="row g-4 mt-2">
+        <% if (products && products.length) { %>
+          <% products.forEach(product => { %>
+            <div class="col-lg-3 col-md-4 col-6">
+              <div class="product-card h-100 shadow-sm">
+                <div class="product-image">
+                  <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop" alt="<%= product.name %>">
+                  <span class="product-badge organic">Organic</span>
+                  <div class="product-actions">
+                    <button><i class="far fa-heart"></i></button>
+                  </div>
+                </div>
+                <div class="product-body">
+                  <div class="product-name"><%= product.name %></div>
+                  <div class="product-price">
+                    <span class="current">$<%= product.price %></span>
+                  </div>
+                  <a href="/products/<%= product.id %>" class="btn btn-sm btn-outline-success w-100">View Product</a>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <div class="col-12 text-center text-muted py-5">
+            <i class="fas fa-box-open fa-3x mb-3"></i>
+            <p>No products available from this farmer</p>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

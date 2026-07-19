@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="list-group shadow-sm">
+          <a href="/admin" class="list-group-item list-group-item-action">
+            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+          </a>
+          <a href="/admin/users" class="list-group-item list-group-item-action">
+            <i class="fas fa-users me-2"></i>Users
+          </a>
+          <a href="/admin/products" class="list-group-item list-group-item-action">
+            <i class="fas fa-box me-2"></i>Products
+          </a>
+          <a href="/admin/orders" class="list-group-item list-group-item-action">
+            <i class="fas fa-shopping-bag me-2"></i>Orders
+          </a>
+          <a href="/admin/payments" class="list-group-item list-group-item-action">
+            <i class="fas fa-credit-card me-2"></i>Payments
+          </a>
+          <a href="/admin/deliveries" class="list-group-item list-group-item-action active bg-success border-success">
+            <i class="fas fa-truck me-2"></i>Deliveries
+          </a>
+          <a href="/admin/categories" class="list-group-item list-group-item-action">
+            <i class="fas fa-tags me-2"></i>Categories
+          </a>
+          <a href="/admin/coupons" class="list-group-item list-group-item-action">
+            <i class="fas fa-gift me-2"></i>Coupons
+          </a>
+          <a href="/admin/analytics" class="list-group-item list-group-item-action">
+            <i class="fas fa-chart-line me-2"></i>Analytics
+          </a>
+          <a href="/admin/settings" class="list-group-item list-group-item-action">
+            <i class="fas fa-cog me-2"></i>Settings
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-md-10">
+        <h4 class="mb-4"><i class="fas fa-truck text-success me-2"></i>Manage Deliveries</h4>
+        
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Total Deliveries</h6>
+                <h3 class="text-success">1,234</h3>
+                <small><i class="fas fa-arrow-up text-success me-1"></i>8.5% increase</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">In Progress</h6>
+                <h3 class="text-warning">45</h3>
+                <small><i class="fas fa-clock me-1"></i>12 riders active</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Completed Today</h6>
+                <h3 class="text-info">89</h3>
+                <small><i class="fas fa-check-circle me-1"></i>95% success rate</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Delayed</h6>
+                <h3 class="text-danger">8</h3>
+                <small><i class="fas fa-exclamation-triangle me-1"></i>Needs attention</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Deliveries Table -->
+        <div class="card shadow-sm">
+          <div class="card-header bg-white">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Search deliveries...">
+              </div>
+              <div class="col-md-3">
+                <select class="form-select">
+                  <option>All Status</option>
+                  <option>Assigned</option>
+                  <option>Picked</option>
+                  <option>In Transit</option>
+                  <option>Completed</option>
+                  <option>Delayed</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <select class="form-select">
+                  <option>All Riders</option>
+                  <option>Rider 1</option>
+                  <option>Rider 2</option>
+                  <option>Rider 3</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-success w-100">Filter</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Delivery ID</th>
+                    <th>Order #</th>
+                    <th>Customer</th>
+                    <th>Rider</th>
+                    <th>Status</th>
+                    <th>Distance</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#DEL-001</td>
+                    <td>#ORD-2024-001</td>
+                    <td>John Doe</td>
+                    <td>Rider Mike</td>
+                    <td><span class="badge bg-success">Completed</span></td>
+                    <td>5.2 km</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-sm btn-outline-success"><i class="fas fa-map"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#DEL-002</td>
+                    <td>#ORD-2024-002</td>
+                    <td>Jane Smith</td>
+                    <td>Rider Sarah</td>
+                    <td><span class="badge bg-warning">In Transit</span></td>
+                    <td>3.8 km</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-sm btn-outline-success"><i class="fas fa-map"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#DEL-003</td>
+                    <td>#ORD-2024-003</td>
+                    <td>Mike Johnson</td>
+                    <td>Rider David</td>
+                    <td><span class="badge bg-danger">Delayed</span></td>
+                    <td>7.5 km</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-sm btn-outline-success"><i class="fas fa-map"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

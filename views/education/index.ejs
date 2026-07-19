@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agriculture Innovation & Digital Learning Hub - Verdant Fields</title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-dark: #0B3D2E;
+      --primary: #1B5E20;
+      --primary-light: #2E7D32;
+      --secondary: #4CAF50;
+      --gold: #D4A017;
+      --gold-light: #F5D06B;
+      --earth: #5D4037;
+      --light-gray: #f5f7f5;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.1);
+      --radius: 16px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8faf8;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+    
+    /* Remove all animations */
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    /* Hero Section */
+    .hero-education {
+      min-height: 85vh;
+      background: url('/images/Education Jul 16, 2026, 04_18_09 PM.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+    
+    .hero-education::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+    
+    .hero-education .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-education .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
+    }
+    
+    .hero-education .hero-title .highlight {
+      color: #4CAF50;
+    }
+    
+    .hero-education .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      line-height: 1.8;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 24px;
+    }
+    
+    .hero-education .hero-badge {
+      display: inline-block;
+      background: rgba(212, 160, 23, 0.2);
+      color: #D4A017;
+      padding: 6px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(212, 160, 23, 0.3);
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .hero-education .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    
+    .btn-primary-green {
+      background: #1B5E20;
+      color: #ffffff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: none;
+    }
+    
+    .btn-primary-green:hover {
+      background: #0B3D2E;
+      color: #ffffff;
+    }
+    
+    .btn-outline-white {
+      background: transparent;
+      color: #ffffff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+    }
+    
+    .btn-outline-gold {
+      background: transparent;
+      color: #D4A017;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid #D4A017;
+    }
+    
+    .btn-outline-gold:hover {
+      background: #D4A017;
+      color: #0a0a1a;
+    }
+    
+    .btn-outline-green {
+      background: transparent;
+      color: #1B5E20;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid #1B5E20;
+      font-size: 0.85rem;
+    }
+    
+    .btn-outline-green:hover {
+      background: #1B5E20;
+      color: #ffffff;
+    }
+    
+    /* Cards */
+    .card-premium {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+    
+    .card-premium .card-icon {
+      font-size: 2rem;
+      color: #1B5E20;
+      margin-bottom: 12px;
+    }
+    
+    .card-premium .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0B3D2E;
+    }
+    
+    .card-premium .card-text {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    
+    .card-premium .card-meta {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 8px;
+    }
+    
+    /* Course Cards */
+    .course-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+    
+    .course-card .course-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+    }
+    
+    .course-card .course-body {
+      padding: 16px;
+    }
+    
+    .course-card .course-body .course-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #0B3D2E;
+      margin-bottom: 4px;
+    }
+    
+    .course-card .course-body .course-instructor {
+      font-size: 0.85rem;
+      color: #555;
+    }
+    
+    .course-card .course-body .course-meta {
+      display: flex;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: #888;
+      margin: 8px 0;
+      flex-wrap: wrap;
+    }
+    
+    .course-card .course-body .course-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .course-card .course-body .course-rating {
+      color: #D4A017;
+      font-size: 0.85rem;
+    }
+    
+    .course-card .course-body .course-badge {
+      display: inline-block;
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      margin-right: 4px;
+    }
+    
+    .course-card .course-body .course-badge.beginners {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    
+    .course-card .course-body .course-badge.intermediate {
+      background: rgba(212, 160, 23, 0.1);
+      color: #D4A017;
+    }
+    
+    .course-card .course-body .course-badge.advanced {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+    }
+    
+    .course-card .course-body .course-cert {
+      display: inline-block;
+      background: rgba(27, 94, 32, 0.06);
+      color: #1B5E20;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-size: 0.65rem;
+      font-weight: 600;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0B3D2E;
+    }
+    
+    .section-subtitle {
+      font-size: 1rem;
+      color: #666;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    
+    .section-badge {
+      display: inline-block;
+      background: rgba(27, 94, 32, 0.06);
+      color: #1B5E20;
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Learning Categories Grid */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    
+    .category-item {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 16px;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+    }
+    
+    .category-item .category-icon {
+      font-size: 1.8rem;
+      color: #1B5E20;
+      margin-bottom: 6px;
+    }
+    
+    .category-item .category-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #0B3D2E;
+    }
+    
+    .category-item .category-count {
+      font-size: 0.7rem;
+      color: #888;
+    }
+    
+    /* FAQ */
+    .faq-item {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+    }
+    
+    .faq-item .faq-question {
+      font-weight: 600;
+      color: #0B3D2E;
+      font-size: 1rem;
+    }
+    
+    .faq-item .faq-answer {
+      color: #555;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+    
+    /* Navbar */
+    .navbar-premium {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      padding: 10px 0;
+    }
+    
+    .navbar-premium .nav-link {
+      color: #555 !important;
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 6px 16px !important;
+    }
+    
+    .navbar-premium .nav-link i {
+      margin-right: 6px;
+    }
+    
+    .navbar-premium .nav-link:hover {
+      color: #0B3D2E !important;
+    }
+    
+    .navbar-premium .nav-link.active {
+      color: #0B3D2E !important;
+      font-weight: 600;
+    }
+    
+    .navbar-premium .brand {
+      color: #0B3D2E;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    
+    .navbar-premium .brand i {
+      color: #4CAF50;
+    }
+    
+    /* Footer */
+    .footer-premium {
+      background: #0B3D2E;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 20px;
+    }
+    
+    .footer-premium h6 {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+    
+    .footer-premium a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: block;
+      padding: 4px 0;
+    }
+    
+    .footer-premium a:hover {
+      color: #4CAF50;
+    }
+    
+    .footer-premium .social-icons a {
+      display: inline-block;
+      margin-right: 12px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .footer-premium .social-icons a:hover {
+      color: #4CAF50;
+    }
+    
+    .footer-premium .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .footer-premium .footer-bottom .tagline {
+      color: #4CAF50;
+      font-weight: 500;
+    }
+    
+    /* Schedule Table */
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .schedule-table th {
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #555;
+      border-bottom: 2px solid rgba(0,0,0,0.04);
+    }
+    
+    .schedule-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.03);
+      font-size: 0.85rem;
+      color: #1a1a1a;
+    }
+    
+    .schedule-table tr:hover td {
+      background: rgba(27, 94, 32, 0.02);
+    }
+    
+    .schedule-table .status-badge {
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .schedule-table .status-badge.open {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    
+    .schedule-table .status-badge.full {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+    }
+    
+    .schedule-table .status-badge.soon {
+      background: rgba(212, 160, 23, 0.1);
+      color: #D4A017;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-education .hero-title {
+        font-size: 2.5rem;
+      }
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-education .hero-title {
+        font-size: 2rem;
+      }
+      .hero-education {
+        min-height: 70vh;
+        padding: 40px 0;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .category-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .schedule-table {
+        font-size: 0.8rem;
+      }
+      .schedule-table th,
+      .schedule-table td {
+        padding: 6px 8px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-education .hero-title {
+        font-size: 1.6rem;
+      }
+      .category-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .category-item {
+        padding: 12px;
+      }
+      .btn-primary-green,
+      .btn-outline-white,
+      .btn-outline-gold {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+      }
+      .hero-education .hero-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ============================================
+  NAVBAR WITH ICONS
+  ============================================ -->
+  <nav class="navbar navbar-expand-lg navbar-premium sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand" href="/">
+        <i class="fas fa-leaf me-2"></i>Verdant Fields
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/marketplace"><i class="fas fa-store"></i>Marketplace</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mart"><i class="fas fa-shopping-bag"></i>Verdant Mart</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/education"><i class="fas fa-graduation-cap"></i>Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="/farmers"><i class="fas fa-tractor"></i>Farmers</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a href="/auth/login" class="btn btn-sm" style="background: transparent; color: #0B3D2E; border: 1px solid #0B3D2E; border-radius: 50px; padding: 6px 20px;">Sign In</a>
+          <a href="/auth/register" class="btn btn-sm" style="background: #1B5E20; color: #ffffff; border-radius: 50px; padding: 6px 20px; border: none;">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+  HERO SECTION
+  ============================================ -->
+  <section class="hero-education">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-lg-8">
+          <span class="hero-badge">
+            <i class="fas fa-circle me-2" style="color: #4CAF50; font-size: 0.4rem;"></i> AGRICULTURE INNOVATION HUB
+          </span>
+          <h1 class="hero-title">
+            Transforming Agriculture Through<br>
+            <span class="highlight">Knowledge, Technology & Innovation</span>
+          </h1>
+          <p class="hero-subtitle">
+            Empowering farmers, entrepreneurs, and agriculture professionals with practical training, 
+            digital tools, climate intelligence, and market knowledge for sustainable agricultural transformation.
+          </p>
+          <div class="hero-buttons">
+            <a href="#" class="btn-primary-green">
+              <i class="fas fa-book-open me-2"></i>Browse Courses
+            </a>
+            <a href="#" class="btn-outline-white">
+              <i class="fas fa-play-circle me-2"></i>Start Learning
+            </a>
+            <a href="#" class="btn-outline-gold">
+              <i class="fas fa-chalkboard-teacher me-2"></i>Become an Instructor
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  LEARNING CATEGORIES (16 Categories)
+  ============================================ -->
+  <section class="container py-5">
+    <div class="text-center mb-4">
+      <span class="section-badge">Categories</span>
+      <h2 class="section-title mt-2">Learning Categories</h2>
+      <p class="section-subtitle mx-auto">Explore our comprehensive agriculture learning programs</p>
+    </div>
+    
+    <div class="category-grid">
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-seedling"></i></div>
+        <div class="category-name">Sustainable Agriculture</div>
+        <div class="category-count">12 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-microchip"></i></div>
+        <div class="category-name">Smart Farming</div>
+        <div class="category-count">8 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-satellite"></i></div>
+        <div class="category-name">Precision Agriculture</div>
+        <div class="category-count">6 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-leaf"></i></div>
+        <div class="category-name">Organic Farming</div>
+        <div class="category-count">10 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-chart-line"></i></div>
+        <div class="category-name">Agribusiness</div>
+        <div class="category-count">7 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-coins"></i></div>
+        <div class="category-name">Agricultural Finance</div>
+        <div class="category-count">5 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-globe"></i></div>
+        <div class="category-name">GIS & Remote Sensing</div>
+        <div class="category-count">4 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-cloud-sun"></i></div>
+        <div class="category-name">Climate Smart Agriculture</div>
+        <div class="category-count">6 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-link"></i></div>
+        <div class="category-name">Value Chain Development</div>
+        <div class="category-count">4 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-horse"></i></div>
+        <div class="category-name">Livestock Management</div>
+        <div class="category-count">6 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-plant-wilt"></i></div>
+        <div class="category-name">Greenhouse Farming</div>
+        <div class="category-count">3 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-bullhorn"></i></div>
+        <div class="category-name">Agricultural Marketing</div>
+        <div class="category-count">5 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-lightbulb"></i></div>
+        <div class="category-name">Entrepreneurship</div>
+        <div class="category-count">6 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-industry"></i></div>
+        <div class="category-name">Food Processing</div>
+        <div class="category-count">4 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-robot"></i></div>
+        <div class="category-name">AI in Agriculture</div>
+        <div class="category-count">3 Courses</div>
+      </div>
+      <div class="category-item">
+        <div class="category-icon"><i class="fas fa-laptop"></i></div>
+        <div class="category-name">Digital Skills</div>
+        <div class="category-count">8 Courses</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  PROFESSIONAL LEARNING PATHS
+  ============================================ -->
+  <section class="py-5" style="background: #f5f7f5;">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-badge">Learning Paths</span>
+        <h2 class="section-title mt-2">Professional Learning Paths</h2>
+        <p class="section-subtitle mx-auto">Choose your career path in agriculture</p>
+      </div>
+      
+      <div class="row g-3">
+        <div class="col-lg-2-4 col-md-4 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-user-graduate"></i></div>
+            <div class="card-title">Beginner Farmer</div>
+            <div class="card-text">12 Courses</div>
+          </div>
+        </div>
+        <div class="col-lg-2-4 col-md-4 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-user-tie"></i></div>
+            <div class="card-title">Commercial Farmer</div>
+            <div class="card-text">15 Courses</div>
+          </div>
+        </div>
+        <div class="col-lg-2-4 col-md-4 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-users"></i></div>
+            <div class="card-title">Cooperative Leader</div>
+            <div class="card-text">10 Courses</div>
+          </div>
+        </div>
+        <div class="col-lg-2-4 col-md-4 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <div class="card-title">Agribusiness Manager</div>
+            <div class="card-text">14 Courses</div>
+          </div>
+        </div>
+        <div class="col-lg-2-4 col-md-4 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-rocket"></i></div>
+            <div class="card-title">Youth Agripreneur</div>
+            <div class="card-text">8 Courses</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FEATURED COURSES
+  ============================================ -->
+  <section class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <div>
+        <span class="section-badge">Courses</span>
+        <h2 class="section-title mt-2">Featured Courses</h2>
+      </div>
+      <a href="#" class="btn-outline-green">View All →</a>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Course 1 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="course-card">
+          <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&q=80');"></div>
+          <div class="course-body">
+            <div class="course-title">Sustainable Farming 101</div>
+            <div class="course-instructor"><i class="fas fa-user me-1"></i>Dr. Sarah Chen</div>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 6 weeks</span>
+              <span><i class="fas fa-users"></i> 1,234</span>
+              <span><i class="fas fa-book"></i> 12 lessons</span>
+            </div>
+            <div class="course-rating">★★★★★ (4.8)</div>
+            <div>
+              <span class="course-badge beginners">Beginner</span>
+              <span class="course-cert"><i class="fas fa-certificate"></i> Certificate</span>
+            </div>
+            <button class="btn btn-primary-green w-100 mt-2" style="padding: 6px; font-size: 0.8rem;">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Course 2 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="course-card">
+          <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&q=80');"></div>
+          <div class="course-body">
+            <div class="course-title">AI in Agriculture</div>
+            <div class="course-instructor"><i class="fas fa-user me-1"></i>Eng. Lisa Wang</div>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 8 weeks</span>
+              <span><i class="fas fa-users"></i> 856</span>
+              <span><i class="fas fa-book"></i> 16 lessons</span>
+            </div>
+            <div class="course-rating">★★★★★ (4.9)</div>
+            <div>
+              <span class="course-badge intermediate">Intermediate</span>
+              <span class="course-cert"><i class="fas fa-certificate"></i> Certificate</span>
+            </div>
+            <button class="btn btn-primary-green w-100 mt-2" style="padding: 6px; font-size: 0.8rem;">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Course 3 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="course-card">
+          <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400&q=80');"></div>
+          <div class="course-body">
+            <div class="course-title">Organic Farming Mastery</div>
+            <div class="course-instructor"><i class="fas fa-user me-1"></i>Prof. James Okafor</div>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 10 weeks</span>
+              <span><i class="fas fa-users"></i> 2,100</span>
+              <span><i class="fas fa-book"></i> 20 lessons</span>
+            </div>
+            <div class="course-rating">★★★★★ (4.7)</div>
+            <div>
+              <span class="course-badge beginners">Beginner</span>
+              <span class="course-cert"><i class="fas fa-certificate"></i> Certificate</span>
+            </div>
+            <button class="btn btn-primary-green w-100 mt-2" style="padding: 6px; font-size: 0.8rem;">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Course 4 -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="course-card">
+          <div class="course-image" style="background-image: url('https://images.unsplash.com/photo-1599909676989-e9f8c4255c6e?w=400&q=80');"></div>
+          <div class="course-body">
+            <div class="course-title">Climate Smart Agriculture</div>
+            <div class="course-instructor"><i class="fas fa-user me-1"></i>Dr. Maria Santos</div>
+            <div class="course-meta">
+              <span><i class="far fa-clock"></i> 6 weeks</span>
+              <span><i class="fas fa-users"></i> 1,567</span>
+              <span><i class="fas fa-book"></i> 12 lessons</span>
+            </div>
+            <div class="course-rating">★★★★★ (4.6)</div>
+            <div>
+              <span class="course-badge advanced">Advanced</span>
+              <span class="course-cert"><i class="fas fa-certificate"></i> Certificate</span>
+            </div>
+            <button class="btn btn-primary-green w-100 mt-2" style="padding: 6px; font-size: 0.8rem;">Enroll Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  LIVE TRAINING SCHEDULE
+  ============================================ -->
+  <section class="py-5" style="background: #f5f7f5;">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-badge">Schedule</span>
+        <h2 class="section-title mt-2">Live Training Schedule</h2>
+        <p class="section-subtitle mx-auto">Upcoming live training sessions and workshops</p>
+      </div>
+      
+      <div class="card-premium" style="padding: 0; overflow: hidden;">
+        <div style="overflow-x: auto;">
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th>Course</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Instructor</th>
+                <th>Spots</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Sustainable Farming 101</strong></td>
+                <td>Jul 20, 2026</td>
+                <td>10:00 AM</td>
+                <td>Dr. Sarah Chen</td>
+                <td>15/30</td>
+                <td><span class="status-badge open">Open</span></td>
+              </tr>
+              <tr>
+                <td><strong>AI in Agriculture</strong></td>
+                <td>Jul 22, 2026</td>
+                <td>2:00 PM</td>
+                <td>Eng. Lisa Wang</td>
+                <td>8/25</td>
+                <td><span class="status-badge open">Open</span></td>
+              </tr>
+              <tr>
+                <td><strong>Organic Farming Mastery</strong></td>
+                <td>Jul 25, 2026</td>
+                <td>9:00 AM</td>
+                <td>Prof. James Okafor</td>
+                <td>25/25</td>
+                <td><span class="status-badge full">Full</span></td>
+              </tr>
+              <tr>
+                <td><strong>Climate Smart Agriculture</strong></td>
+                <td>Jul 28, 2026</td>
+                <td>3:00 PM</td>
+                <td>Dr. Maria Santos</td>
+                <td>12/30</td>
+                <td><span class="status-badge open">Open</span></td>
+              </tr>
+              <tr>
+                <td><strong>GIS & Remote Sensing</strong></td>
+                <td>Aug 01, 2026</td>
+                <td>11:00 AM</td>
+                <td>Dr. David Kim</td>
+                <td>5/20</td>
+                <td><span class="status-badge open">Open</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  LEARNING PROGRESS & CERTIFICATES
+  ============================================ -->
+  <section class="container py-5">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card-premium">
+          <h6 style="font-weight: 700; color: #0B3D2E; margin-bottom: 12px;"><i class="fas fa-chart-simple me-2"></i>Learning Progress</h6>
+          <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04);">
+            <span>Sustainable Farming 101</span>
+            <span style="font-weight: 600; color: #1B5E20;">75%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04);">
+            <span>AI in Agriculture</span>
+            <span style="font-weight: 600; color: #1B5E20;">45%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; padding: 8px 0;">
+            <span>Organic Farming Mastery</span>
+            <span style="font-weight: 600; color: #1B5E20;">20%</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card-premium">
+          <h6 style="font-weight: 700; color: #0B3D2E; margin-bottom: 12px;"><i class="fas fa-certificate me-2"></i>Certificates Earned</h6>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.04);">
+            <i class="fas fa-certificate" style="color: #D4A017; font-size: 1.2rem;"></i>
+            <span>Sustainable Agriculture Specialist</span>
+            <span style="margin-left: auto; font-size: 0.8rem; color: #888;">Issued: Jun 2026</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 12px; padding: 8px 0;">
+            <i class="fas fa-certificate" style="color: #D4A017; font-size: 1.2rem;"></i>
+            <span>Digital Agriculture Professional</span>
+            <span style="margin-left: auto; font-size: 0.8rem; color: #888;">Issued: May 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  DIGITAL LIBRARY & RESOURCES
+  ============================================ -->
+  <section class="py-5" style="background: #f5f7f5;">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-badge">Resources</span>
+        <h2 class="section-title mt-2">Digital Library & Resources</h2>
+        <p class="section-subtitle mx-auto">Access our comprehensive agriculture knowledge center</p>
+      </div>
+      
+      <div class="row g-3">
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-book"></i></div>
+            <div class="card-title">Digital Library</div>
+            <div class="card-text">250+ Resources</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-file-pdf"></i></div>
+            <div class="card-title">Research Papers</div>
+            <div class="card-text">120+ Papers</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-building-columns"></i></div>
+            <div class="card-title">Government Resources</div>
+            <div class="card-text">45+ Resources</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-globe-africa"></i></div>
+            <div class="card-title">FAO Resources</div>
+            <div class="card-text">80+ Resources</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row g-3 mt-2">
+        <div class="col-md-6">
+          <div class="card-premium">
+            <h6 style="font-weight: 700; color: #0B3D2E;"><i class="fas fa-clipboard-list me-2"></i>Case Studies</h6>
+            <div style="padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.9rem; color: #555;">
+              <i class="fas fa-file me-2" style="color: #1B5E20;"></i>Successful Organic Farm Transformation
+            </div>
+            <div style="padding: 6px 0; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.9rem; color: #555;">
+              <i class="fas fa-file me-2" style="color: #1B5E20;"></i>AI-Driven Crop Yield Optimization
+            </div>
+            <div style="padding: 6px 0; font-size: 0.9rem; color: #555;">
+              <i class="fas fa-file me-2" style="color: #1B5E20;"></i>Climate Smart Agriculture in Practice
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card-premium">
+            <h6 style="font-weight: 700; color: #0B3D2E;"><i class="fas fa-question-circle me-2"></i>Frequently Asked Questions</h6>
+            <div class="faq-item" style="margin-bottom: 8px; padding: 10px 14px;">
+              <div class="faq-question">How do I enroll in a course?</div>
+              <div class="faq-answer">Simply click the "Enroll Now" button on any course card. You'll need to create a free account first.</div>
+            </div>
+            <div class="faq-item" style="margin-bottom: 0; padding: 10px 14px;">
+              <div class="faq-question">Are the courses certified?</div>
+              <div class="faq-answer">Yes, all courses include a verified digital certificate upon completion.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FOOTER - Premium Enterprise Footer
+  ============================================ -->
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Company -->
+        <div class="col-lg-3 col-md-6">
+          <h5 style="color: #4CAF50;"><i class="fas fa-leaf me-2"></i>Verdant Fields</h5>
+          <p style="font-size: 0.85rem; opacity: 0.6;">Connecting farmers to markets, freshness to homes.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+        
+        <!-- Company Links -->
+        <div class="col-lg-2 col-md-6">
+          <h6>Company</h6>
+          <a href="#">About Us</a>
+          <a href="#">Our Mission</a>
+          <a href="#">Leadership</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        
+        <!-- Platform -->
+        <div class="col-lg-2 col-md-6">
+          <h6>Platform</h6>
+          <a href="/marketplace">Marketplace</a>
+          <a href="/education">Education</a>
+          <a href="/farmers">Farmer Portal</a>
+          <a href="#">Buyer Portal</a>
+          <a href="#">Input Store</a>
+          <a href="#">Logistics</a>
+        </div>
+        
+        <!-- Resources -->
+        <div class="col-lg-2 col-md-6">
+          <h6>Resources</h6>
+          <a href="#">Help Center</a>
+          <a href="#">FAQs</a>
+          <a href="#">Blog</a>
+          <a href="#">Documentation</a>
+          <a href="#">Research</a>
+          <a href="#">Downloads</a>
+        </div>
+        
+        <!-- Partners -->
+        <div class="col-lg-3 col-md-6">
+          <h6>Partners</h6>
+          <a href="#">Government</a>
+          <a href="#">NGOs</a>
+          <a href="#">Cooperatives</a>
+          <a href="#">Financial Institutions</a>
+          <a href="#">Universities</a>
+          <a href="#">Suppliers</a>
+        </div>
+      </div>
+      
+      <div class="row g-4 mt-3">
+        <!-- Contact Information -->
+        <div class="col-md-3">
+          <h6>Contact</h6>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-envelope me-2"></i>info@verdantfields.com</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-phone me-2"></i>+250 788 123 456</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-map-marker-alt me-2"></i>KN 2 St, Kigali, Rwanda</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-clock me-2"></i>Mon-Fri: 8:00 - 18:00</p>
+        </div>
+        
+        <!-- Newsletter -->
+        <div class="col-md-5">
+          <h6>Newsletter</h6>
+          <p style="font-size: 0.85rem; opacity: 0.6;">Subscribe for agriculture insights and updates</p>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Your email address" style="border-radius: 50px 0 0 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #ffffff; padding: 10px 16px;">
+            <button class="btn" style="background: #4CAF50; color: #ffffff; border-radius: 0 50px 50px 0; border: none; padding: 10px 24px; font-weight: 600;">Subscribe</button>
+          </div>
+        </div>
+        
+        <!-- Legal -->
+        <div class="col-md-4">
+          <h6>Legal</h6>
+          <div class="row">
+            <div class="col-6">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Cookie Policy</a>
+            </div>
+            <div class="col-6">
+              <a href="#">Accessibility</a>
+              <a href="#">Refund Policy</a>
+              <a href="#">Security</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 Verdant Fields Rwanda. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Driven by Tech, <span class="tagline">Grounded in Nature.</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+  SCRIPTS
+  ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    console.log('🌾 Agriculture Innovation & Digital Learning Hub loaded');
+    console.log('📚 Enterprise-grade education platform');
+  </script>
+</body>
+</html>

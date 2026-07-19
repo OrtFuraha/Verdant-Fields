@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <style>
+    /* Full screen hero section */
+    .hero-full {
+      width: 100%;
+      height: 100vh;
+      background: url('/images/ChatGPT Image Jul 10, 2026, 12_44_19 PM.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+    }
+    
+    /* Dark overlay for text readability */
+    .hero-full::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 0;
+    }
+    
+    .hero-full .hero-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 60px 40px;
+    }
+    
+    .hero-full .hero-content .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .hero-title-large {
+      font-size: 4.5rem;
+      font-weight: 900;
+      color: #FFFFFF !important;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    
+    .hero-title-large .highlight {
+      color: #FFFFFF !important;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5) !important;
+      position: relative;
+    }
+    
+    .hero-title-large .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: #F9A825;
+      opacity: 0.4;
+      border-radius: 4px;
+    }
+    
+    .hero-subtitle-large {
+      color: #FFFFFF !important;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+      font-weight: 400;
+      font-size: 1.4rem;
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      opacity: 0.95;
+    }
+    
+    .hero-search-large {
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+    
+    .hero-search-large .input-group {
+      background: rgba(255,255,255,0.95);
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero-search-large .form-control {
+      border: none;
+      padding: 16px 24px;
+      font-size: 1.1rem;
+      border-radius: 50px 0 0 50px;
+      background: transparent;
+    }
+    
+    .hero-search-large .form-control:focus {
+      box-shadow: none;
+    }
+    
+    .hero-search-large .btn {
+      padding: 16px 36px;
+      border-radius: 0 50px 50px 0;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    
+    .btn-hero-large-primary {
+      background: #2E7D32;
+      color: #FFFFFF;
+      padding: 16px 44px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(46,125,50,0.4);
+    }
+    
+    .btn-hero-large-primary:hover {
+      background: #1B5E20;
+      color: #FFFFFF;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(46,125,50,0.5);
+    }
+    
+    .btn-hero-large-secondary {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.4);
+      color: #FFFFFF !important;
+      padding: 16px 44px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    
+    .btn-hero-large-secondary:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.6);
+      color: #FFFFFF !important;
+    }
+    
+    /* Stats row */
+    .hero-stats-row {
+      display: flex;
+      gap: 50px;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .hero-stats-row .stat-item {
+      text-align: left;
+    }
+    
+    .hero-stats-row .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #FFFFFF;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      line-height: 1;
+    }
+    
+    .hero-stats-row .stat-label {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      margin-top: 4px;
+      font-weight: 400;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-title-large {
+        font-size: 3.5rem;
+      }
+      .hero-subtitle-large {
+        font-size: 1.2rem;
+      }
+      .hero-stats-row {
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-full {
+        height: 100vh;
+        background-attachment: scroll;
+      }
+      .hero-full .hero-content {
+        padding: 40px 20px;
+      }
+      .hero-title-large {
+        font-size: 2.5rem;
+      }
+      .hero-subtitle-large {
+        font-size: 1rem;
+      }
+      .hero-search-large .form-control {
+        padding: 14px 18px;
+        font-size: 1rem;
+      }
+      .hero-search-large .btn {
+        padding: 14px 24px;
+        font-size: 1rem;
+      }
+      .btn-hero-large-primary,
+      .btn-hero-large-secondary {
+        padding: 14px 30px;
+        font-size: 1rem;
+      }
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+      .hero-buttons a {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-stats-row {
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .hero-stats-row .stat-item {
+        flex: 1 1 45%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-title-large {
+        font-size: 2rem;
+      }
+      .hero-subtitle-large {
+        font-size: 0.95rem;
+      }
+      .hero-stats-row .stat-number {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ============================================
+  HEADER / NAVIGATION
+  ============================================ -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <i class="fas fa-leaf"></i>Verdant Fields
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/marketplace">Marketplace</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mart">Verdant Mart</a></li>
+          <li class="nav-item"><a class="nav-link" href="/farmers">Farmers</a></li>
+          <li class="nav-item"><a class="nav-link" href="/education">Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <a href="#" class="nav-link"><i class="fas fa-search"></i></a>
+          <a href="#" class="nav-link"><i class="fas fa-bell"></i></a>
+          <% if (user) { %>
+            <a href="/dashboard" class="btn btn-nav-primary btn-nav">
+              <i class="fas fa-user me-2"></i>Dashboard
+            </a>
+          <% } else { %>
+            <a href="/auth/login" class="btn btn-nav-outline btn-nav">Login</a>
+            <a href="/auth/register" class="btn btn-nav-primary btn-nav">Register</a>
+          <% } %>
+          <a href="/auth/register?role=farmer" class="btn btn-nav-primary btn-nav">
+            <i class="fas fa-seedling me-2"></i>Start Selling
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+  HERO SECTION - Full Screen Background Image
+  ============================================ -->
+  <section class="hero-full">
+    <div class="hero-content">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <h1 class="hero-title-large">
+              Connecting Farmers to <br>
+              <span class="highlight">Markets, Freshness</span> to Homes.
+            </h1>
+            <p class="hero-subtitle-large">
+              Join the largest agriculture ecosystem connecting farmers, buyers, 
+              and customers for fresh, organic, and sustainable produce.
+            </p>
+            
+            <div class="hero-search-large">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for fresh produce, farmers, or products...">
+                <button class="btn btn-success" type="button">
+                  <i class="fas fa-search me-2"></i>Search
+                </button>
+              </div>
+            </div>
+            
+            <div class="hero-buttons d-flex gap-3 flex-wrap">
+              <a href="/marketplace" class="btn-hero-large-primary">
+                <i class="fas fa-shopping-bag"></i>Shop Now
+              </a>
+              <a href="/marketplace" class="btn-hero-large-secondary">
+                <i class="fas fa-store-alt"></i>Explore Marketplace
+              </a>
+            </div>
+            
+            <div class="hero-stats-row">
+              <div class="stat-item">
+                <div class="stat-number">20K+</div>
+                <div class="stat-label">Farmers</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">150K+</div>
+                <div class="stat-label">Customers</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">5K+</div>
+                <div class="stat-label">Products</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Satisfaction</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  SHOP BY CATEGORY
+  ============================================ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Categories</span>
+        <h2>Shop by Category</h2>
+        <p>Find fresh produce from trusted farmers in your area</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/vegetables" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-carrot"></i></div>
+              <h6>Vegetables</h6>
+              <div class="count">120+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/fruits" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-apple-alt"></i></div>
+              <h6>Fruits</h6>
+              <div class="count">85+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/organic" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-leaf"></i></div>
+              <h6>Organic Foods</h6>
+              <div class="count">60+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/seeds" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-seedling"></i></div>
+              <h6>Seeds</h6>
+              <div class="count">45+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/livestock" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-horse"></i></div>
+              <h6>Livestock</h6>
+              <div class="count">30+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/dairy" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-cheese"></i></div>
+              <h6>Dairy</h6>
+              <div class="count">40+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/beverages" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-wine-bottle"></i></div>
+              <h6>Beverages</h6>
+              <div class="count">25+ Products</div>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-6">
+          <a href="/categories/equipment" class="text-decoration-none">
+            <div class="category-card">
+              <div class="icon-wrapper"><i class="fas fa-tractor"></i></div>
+              <h6>Equipment</h6>
+              <div class="count">35+ Products</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FEATURED PRODUCTS
+  ============================================ -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Featured</span>
+        <h2>Featured Products</h2>
+        <p>Handpicked fresh produce from our top-rated farmers</p>
+      </div>
+      <div class="row g-4">
+        <!-- Product 1 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=400&h=300&fit=crop" alt="Organic Tomatoes">
+              <span class="product-badge organic">Organic</span>
+              <span class="product-badge discount" style="left: auto; right: 12px; top: 48px;">-20%</span>
+              <div class="product-actions">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Organic Tomatoes</div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Green Valley Farm</div>
+              <div class="product-price">
+                <span class="current">$4.99</span>
+                <span class="original">$6.99</span>
+              </div>
+              <div class="product-rating">
+                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></span>
+                <span class="count">(124 reviews)</span>
+              </div>
+              <div class="product-footer">
+                <span class="availability in-stock"><i class="fas fa-check-circle me-1"></i>In Stock</span>
+                <button class="btn btn-sm btn-success"><i class="fas fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&h=300&fit=crop" alt="Fresh Strawberries">
+              <span class="product-badge organic">Organic</span>
+              <div class="product-actions">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Fresh Strawberries</div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Berry Bliss Farm</div>
+              <div class="product-price">
+                <span class="current">$6.99</span>
+              </div>
+              <div class="product-rating">
+                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                <span class="count">(89 reviews)</span>
+              </div>
+              <div class="product-footer">
+                <span class="availability in-stock"><i class="fas fa-check-circle me-1"></i>In Stock</span>
+                <button class="btn btn-sm btn-success"><i class="fas fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=400&h=300&fit=crop" alt="Fresh Herbs">
+              <span class="product-badge organic">Organic</span>
+              <div class="product-actions">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Fresh Herbs Bundle</div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Herbal Heaven</div>
+              <div class="product-price">
+                <span class="current">$3.99</span>
+              </div>
+              <div class="product-rating">
+                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                <span class="count">(56 reviews)</span>
+              </div>
+              <div class="product-footer">
+                <span class="availability out-of-stock"><i class="fas fa-times-circle me-1"></i>Out of Stock</span>
+                <button class="btn btn-sm btn-secondary" disabled><i class="fas fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&h=300&fit=crop" alt="Organic Vegetables">
+              <span class="product-badge organic">Organic</span>
+              <span class="product-badge discount" style="left: auto; right: 12px; top: 48px;">-15%</span>
+              <div class="product-actions">
+                <button><i class="far fa-heart"></i></button>
+                <button><i class="fas fa-eye"></i></button>
+              </div>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Mixed Vegetables</div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Sunshine Farm</div>
+              <div class="product-price">
+                <span class="current">$8.99</span>
+                <span class="original">$10.99</span>
+              </div>
+              <div class="product-rating">
+                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                <span class="count">(203 reviews)</span>
+              </div>
+              <div class="product-footer">
+                <span class="availability in-stock"><i class="fas fa-check-circle me-1"></i>In Stock</span>
+                <button class="btn btn-sm btn-success"><i class="fas fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="/marketplace" class="btn-hero-large-primary">View All Products <i class="fas fa-arrow-right ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  VERDANT MART PROMO
+  ============================================ -->
+  <section class="container">
+    <div class="mart-promo">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="promo-content">
+            <span class="section-badge" style="background: var(--orange); color: white;">Verdant Mart</span>
+            <h2>Fresh Groceries<br>Delivered to Your Door</h2>
+            <p>Shop from our online grocery store featuring fresh vegetables, healthy fruits, organic foods, fresh juices, and smoothies.</p>
+            <div class="promo-features">
+              <div class="feature"><i class="fas fa-check-circle"></i> Fresh Produce</div>
+              <div class="feature"><i class="fas fa-check-circle"></i> Organic Options</div>
+              <div class="feature"><i class="fas fa-check-circle"></i> Fast Delivery</div>
+            </div>
+            <a href="/mart" class="btn-promo">
+              <i class="fas fa-shopping-bag me-2"></i>Order Fresh Food
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop" 
+               alt="Fresh Groceries" class="promo-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  WHY CHOOSE US
+  ============================================ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Why Choose Us</span>
+        <h2>Why Verdant Fields?</h2>
+        <p>We're building the future of agriculture commerce</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div class="icon-wrapper"><i class="fas fa-seedling"></i></div>
+            <h6>Farm Fresh Products</h6>
+            <p>Directly sourced from local farms, ensuring maximum freshness and quality.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div class="icon-wrapper"><i class="fas fa-user-check"></i></div>
+            <h6>Verified Farmers</h6>
+            <p>All farmers are verified and certified to ensure product quality and safety.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div class="icon-wrapper"><i class="fas fa-truck-fast"></i></div>
+            <h6>Fast Delivery</h6>
+            <p>Quick and reliable delivery system to get your fresh produce to your doorstep.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div class="icon-wrapper"><i class="fas fa-shield-alt"></i></div>
+            <h6>Secure Payments</h6>
+            <p>Multiple payment options with bank-level security for peace of mind.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div class="icon-wrapper"><i class="fas fa-tags"></i></div>
+            <h6>Affordable Prices</h6>
+            <p>Fair pricing with no middlemen, saving you money on fresh produce.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="feature-card">
+            <div class="icon-wrapper"><i class="fas fa-headset"></i></div>
+            <h6>24/7 Customer Support</h6>
+            <p>Dedicated support team ready to help you with any questions or issues.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  HOW IT WORKS
+  ============================================ -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">How It Works</span>
+        <h2>Get Started in 4 Easy Steps</h2>
+        <p>From farm to table, we make it simple</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <div class="step-icon"><i class="fas fa-user-plus"></i></div>
+            <h6>Register</h6>
+            <p>Create your free account and choose your role</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <div class="step-icon"><i class="fas fa-search"></i></div>
+            <h6>Browse Products</h6>
+            <p>Explore fresh produce from verified farmers</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <div class="step-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h6>Place Order</h6>
+            <p>Add to cart and checkout with secure payment</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <div class="step-icon"><i class="fas fa-truck"></i></div>
+            <h6>Home Delivery</h6>
+            <p>Get your fresh produce delivered to your door</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FEATURED FARMERS
+  ============================================ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Farmers</span>
+        <h2>Featured Farmers</h2>
+        <p>Meet our top-rated farmers who provide the freshest produce</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <div class="farmer-card">
+            <div class="farmer-image">
+              <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=200&fit=crop" alt="Green Valley Farm">
+            </div>
+            <div class="farmer-body">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" 
+                   alt="Farmer" class="farmer-avatar">
+              <div class="farmer-name">John Smith</div>
+              <div class="farmer-location"><i class="fas fa-map-marker-alt me-1"></i>Green Valley, CA</div>
+              <div class="farmer-stats">
+                <div class="stat">
+                  <div class="number">45</div>
+                  <div class="label">Products</div>
+                </div>
+                <div class="stat">
+                  <div class="number">4.9</div>
+                  <div class="label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="number">2K+</div>
+                  <div class="label">Sales</div>
+                </div>
+              </div>
+              <a href="/farmers/1" class="btn btn-sm btn-outline-success">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="farmer-card">
+            <div class="farmer-image">
+              <img src="https://images.unsplash.com/photo-1596363505720-5ab881f1f42b?w=400&h=200&fit=crop" alt="Sunshine Farm">
+            </div>
+            <div class="farmer-body">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" 
+                   alt="Farmer" class="farmer-avatar">
+              <div class="farmer-name">Maria Garcia</div>
+              <div class="farmer-location"><i class="fas fa-map-marker-alt me-1"></i>Sunshine, FL</div>
+              <div class="farmer-stats">
+                <div class="stat">
+                  <div class="number">38</div>
+                  <div class="label">Products</div>
+                </div>
+                <div class="stat">
+                  <div class="number">4.8</div>
+                  <div class="label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="number">1.5K+</div>
+                  <div class="label">Sales</div>
+                </div>
+              </div>
+              <a href="/farmers/2" class="btn btn-sm btn-outline-success">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="farmer-card">
+            <div class="farmer-image">
+              <img src="https://images.unsplash.com/photo-1599850511906-88b041b3c8f2?w=400&h=200&fit=crop" alt="Berry Bliss">
+            </div>
+            <div class="farmer-body">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" 
+                   alt="Farmer" class="farmer-avatar">
+              <div class="farmer-name">David Chen</div>
+              <div class="farmer-location"><i class="fas fa-map-marker-alt me-1"></i>Berry, OR</div>
+              <div class="farmer-stats">
+                <div class="stat">
+                  <div class="number">52</div>
+                  <div class="label">Products</div>
+                </div>
+                <div class="stat">
+                  <div class="number">4.9</div>
+                  <div class="label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="number">3K+</div>
+                  <div class="label">Sales</div>
+                </div>
+              </div>
+              <a href="/farmers/3" class="btn btn-sm btn-outline-success">View Profile</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <div class="farmer-card">
+            <div class="farmer-image">
+              <img src="https://images.unsplash.com/photo-1599909676989-e9f8c4255c6e?w=400&h=200&fit=crop" alt="Herbal Heaven">
+            </div>
+            <div class="farmer-body">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" 
+                   alt="Farmer" class="farmer-avatar">
+              <div class="farmer-name">Sarah Johnson</div>
+              <div class="farmer-location"><i class="fas fa-map-marker-alt me-1"></i>Herbal, WA</div>
+              <div class="farmer-stats">
+                <div class="stat">
+                  <div class="number">29</div>
+                  <div class="label">Products</div>
+                </div>
+                <div class="stat">
+                  <div class="number">4.7</div>
+                  <div class="label">Rating</div>
+                </div>
+                <div class="stat">
+                  <div class="number">1.2K+</div>
+                  <div class="label">Sales</div>
+                </div>
+              </div>
+              <a href="/farmers/4" class="btn btn-sm btn-outline-success">View Profile</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  CUSTOMER TESTIMONIALS
+  ============================================ -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Testimonials</span>
+        <h2>What Our Customers Say</h2>
+        <p>Real stories from real people who trust Verdant Fields</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" 
+                   alt="Customer" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Emily Rodriguez</div>
+                <div class="testimonial-role">Regular Customer</div>
+              </div>
+            </div>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "I've been buying fresh produce from Verdant Fields for 6 months now. 
+              The quality is always excellent and delivery is reliable. Love supporting local farmers!"
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face" 
+                   alt="Customer" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Michael Thompson</div>
+                <div class="testimonial-role">Restaurant Owner</div>
+              </div>
+            </div>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "As a restaurant owner, I need consistent quality. Verdant Fields delivers 
+              every time. Their organic produce has helped us elevate our menu."
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="testimonial-card">
+            <div class="testimonial-header">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" 
+                   alt="Customer" class="testimonial-avatar">
+              <div>
+                <div class="testimonial-name">Lisa Park</div>
+                <div class="testimonial-role">Health Enthusiast</div>
+              </div>
+            </div>
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">
+              "Finding organic, fresh produce used to be a challenge. Verdant Fields 
+              makes it so easy. I love the variety and the farmer stories behind each product."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  BLOG & FARMING TIPS
+  ============================================ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">Blog</span>
+        <h2>Farming Tips & Insights</h2>
+        <p>Learn from experts and stay connected with the agriculture community</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1599909676989-e9f8c4255c6e?w=600&h=300&fit=crop" alt="Organic Farming">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta"><i class="far fa-calendar me-1"></i>Dec 15, 2024  •  <i class="far fa-clock me-1"></i>5 min read</div>
+              <div class="blog-title">10 Tips for Successful Organic Farming</div>
+              <div class="blog-excerpt">Learn the essential practices for starting and maintaining a successful organic farm...</div>
+              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1596363505720-5ab881f1f42b?w=600&h=300&fit=crop" alt="Sustainable Farming">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta"><i class="far fa-calendar me-1"></i>Dec 10, 2024  •  <i class="far fa-clock me-1"></i>4 min read</div>
+              <div class="blog-title">Sustainable Farming Practices for 2025</div>
+              <div class="blog-excerpt">Discover the latest sustainable farming techniques that are shaping the future of agriculture...</div>
+              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="blog-card">
+            <div class="blog-image">
+              <img src="https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=600&h=300&fit=crop" alt="Market Trends">
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta"><i class="far fa-calendar me-1"></i>Dec 5, 2024  •  <i class="far fa-clock me-1"></i>6 min read</div>
+              <div class="blog-title">Agriculture Market Trends to Watch</div>
+              <div class="blog-excerpt">Stay ahead with our analysis of emerging trends in the agriculture marketplace...</div>
+              <a href="#" class="blog-link">Read More <i class="fas fa-arrow-right ms-1"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="/education" class="btn-hero-secondary">View All Articles <i class="fas fa-arrow-right ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  NEWSLETTER
+  ============================================ -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-card">
+        <h2>Subscribe to Our Newsletter</h2>
+        <p>Get the latest updates on fresh produce, special offers, and agriculture news</p>
+        <form class="newsletter-form">
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your email address" required>
+            <button class="btn btn-success" type="submit">
+              <i class="fas fa-paper-plane me-2"></i>Subscribe
+            </button>
+          </div>
+          <small class="text-muted d-block mt-2">We respect your privacy. Unsubscribe anytime.</small>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FOOTER
+  ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h6><i class="fas fa-leaf me-2"></i>Verdant Fields</h6>
+          <p style="color: rgba(255,255,255,0.7); margin-bottom: 16px;">
+            Connecting Farmers to Markets, Freshness to Homes. 
+            Building a sustainable agriculture ecosystem for everyone.
+          </p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/marketplace">Marketplace</a></li>
+            <li><a href="/mart">Verdant Mart</a></li>
+            <li><a href="/farmers">Farmers</a></li>
+            <li><a href="/education">Education</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6>Support</h6>
+          <ul class="footer-links">
+            <li><a href="/help">Help Center</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+            <li><a href="/returns">Returns Policy</a></li>
+            <li><a href="/delivery">Delivery Info</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6>Resources</h6>
+          <ul class="footer-links">
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/guides">Farming Guides</a></li>
+            <li><a href="/market-prices">Market Prices</a></li>
+            <li><a href="/community">Community</a></li>
+            <li><a href="/events">Events</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-md-6">
+          <h6>Legal</h6>
+          <ul class="footer-links">
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/cookies">Cookie Policy</a></li>
+            <li><a href="/security">Security</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-md-6 text-md-start">
+            &copy; 2024 Verdant Fields. All Rights Reserved.
+          </div>
+          <div class="col-md-6 text-md-end">
+            <span style="color: rgba(255,255,255,0.4);">
+              <i class="fas fa-phone me-1"></i>+1 (555) 123-4567
+              <span class="mx-2">|</span>
+              <i class="fas fa-envelope me-1"></i>info@verdantfields.com
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+  SCRIPTS
+  ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

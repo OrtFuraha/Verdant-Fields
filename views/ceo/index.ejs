@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4><i class="fas fa-chart-line text-success me-2"></i>CEO Dashboard</h4>
+          <span class="badge bg-success">Executive View</span>
+        </div>
+        
+        <!-- Key Metrics -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Total Revenue</h6>
+                    <h3 class="mb-0 text-success">$<%= stats.revenue %></h3>
+                  </div>
+                  <i class="fas fa-dollar-sign fa-2x text-success"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Total Orders</h6>
+                    <h3 class="mb-0"><%= stats.orders %></h3>
+                  </div>
+                  <i class="fas fa-shopping-bag fa-2x text-primary"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Active Farmers</h6>
+                    <h3 class="mb-0"><%= stats.farmers %></h3>
+                  </div>
+                  <i class="fas fa-tractor fa-2x text-warning"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm dashboard-card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <h6 class="text-muted">Avg Product Rating</h6>
+                    <h3 class="mb-0"><%= stats.avgRating.toFixed(1) %> ★</h3>
+                  </div>
+                  <i class="fas fa-star fa-2x text-warning"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Charts Row -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-8">
+            <div class="card shadow-sm">
+              <div class="card-header bg-success text-white">
+                <i class="fas fa-chart-bar me-2"></i>Monthly Revenue & Orders
+              </div>
+              <div class="card-body">
+                <canvas id="monthlyChart" height="200"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card shadow-sm">
+              <div class="card-header bg-success text-white">
+                <i class="fas fa-trophy me-2"></i>Top Products
+              </div>
+              <div class="card-body">
+                <% if (topProducts && topProducts.length) { %>
+                  <div class="list-group">
+                    <% topProducts.forEach((product, index) => { %>
+                      <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <span class="badge bg-success me-2">#<%= index + 1 %></span>
+                            <%= product.name %>
+                          </div>
+                          <span class="badge bg-info">$<%= product.total_revenue || 0 %></span>
+                        </div>
+                      </div>
+                    <% }) %>
+                  </div>
+                <% } else { %>
+                  <p class="text-muted">No products data available</p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Platform Stats -->
+        <div class="row g-4">
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <h6 class="text-muted">Total Users</h6>
+                <h3><%= stats.users %></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <h6 class="text-muted">Customers</h6>
+                <h3><%= stats.customers %></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <h6 class="text-muted">Buyers</h6>
+                <h3><%= stats.buyers %></h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body text-center">
+                <h6 class="text-muted">Total Products</h6>
+                <h3><%= stats.products %></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script>
+    // Monthly Chart
+    const ctx = document.getElementById('monthlyChart').getContext('2d');
+    const monthlyData = <%= JSON.stringify(monthlyData) %>;
+    
+    const labels = monthlyData.map(item => item.month);
+    const orderData = monthlyData.map(item => item.orders);
+    const revenueData = monthlyData.map(item => item.revenue || 0);
+    
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Orders',
+            data: orderData,
+            backgroundColor: 'rgba(46, 125, 50, 0.5)',
+            borderColor: 'rgba(46, 125, 50, 1)',
+            borderWidth: 1
+          },
+          {
+            label: 'Revenue ($)',
+            data: revenueData,
+            backgroundColor: 'rgba(255, 152, 0, 0.5)',
+            borderColor: 'rgba(255, 152, 0, 1)',
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

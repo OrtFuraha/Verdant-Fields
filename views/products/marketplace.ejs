@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agricultural Marketplace - Verdant Fields</title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    :root {
+      --primary-dark: #0B3D2E;
+      --primary: #1B5E20;
+      --primary-light: #2E7D32;
+      --secondary: #4CAF50;
+      --gold: #D4A017;
+      --gold-light: #F5D06B;
+      --earth: #5D4037;
+      --light-gray: #f5f7f5;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.1);
+      --radius: 16px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8faf8;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+    
+    /* Remove all animations */
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    /* Hero Section */
+    .hero-marketplace {
+      min-height: 85vh;
+      background: url('/images/Marketplace Jul 16, 2026, 03_21_14 PM.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+    
+    .hero-marketplace::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+    
+    .hero-marketplace .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-marketplace .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
+    }
+    
+    .hero-marketplace .hero-title .highlight {
+      color: #4CAF50;
+    }
+    
+    .hero-marketplace .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      line-height: 1.8;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 24px;
+    }
+    
+    .hero-marketplace .hero-search {
+      max-width: 600px;
+    }
+    
+    .hero-marketplace .hero-search .input-group {
+      background: rgba(255,255,255,0.95);
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    }
+    
+    .hero-marketplace .hero-search .form-control {
+      border: none;
+      padding: 16px 24px;
+      font-size: 1rem;
+      background: transparent;
+    }
+    
+    .hero-marketplace .hero-search .form-control:focus {
+      box-shadow: none;
+    }
+    
+    .hero-marketplace .hero-search .btn {
+      padding: 16px 32px;
+      border-radius: 0 50px 50px 0;
+      background: #1B5E20;
+      color: #ffffff;
+      border: none;
+      font-weight: 600;
+    }
+    
+    .hero-marketplace .hero-categories {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    
+    .hero-marketplace .hero-categories .cat-pill {
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,0.9);
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .hero-marketplace .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    
+    .btn-primary-green {
+      background: #1B5E20;
+      color: #ffffff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: none;
+    }
+    
+    .btn-primary-green:hover {
+      background: #0B3D2E;
+      color: #ffffff;
+    }
+    
+    .btn-outline-white {
+      background: transparent;
+      color: #ffffff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+    }
+    
+    .btn-outline-green {
+      background: transparent;
+      color: #1B5E20;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid #1B5E20;
+    }
+    
+    .btn-outline-green:hover {
+      background: #1B5E20;
+      color: #ffffff;
+    }
+    
+    /* Cards */
+    .card-premium {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+    
+    .card-premium .card-icon {
+      font-size: 2rem;
+      color: #1B5E20;
+      margin-bottom: 12px;
+    }
+    
+    .card-premium .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0B3D2E;
+    }
+    
+    .card-premium .card-text {
+      color: #555;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    
+    /* Product Cards */
+    .product-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+    
+    .product-card .product-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .product-card .product-image .badge-organic {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #4CAF50;
+      color: #ffffff;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .product-card .product-image .badge-verified {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #D4A017;
+      color: #0a0a1a;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    .product-card .product-body {
+      padding: 16px;
+    }
+    
+    .product-card .product-body .product-name {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: #0B3D2E;
+    }
+    
+    .product-card .product-body .product-price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #1B5E20;
+    }
+    
+    .product-card .product-body .product-farmer {
+      font-size: 0.85rem;
+      color: #555;
+    }
+    
+    .product-card .product-body .product-rating {
+      color: #D4A017;
+      font-size: 0.85rem;
+    }
+    
+    .product-card .product-body .product-stock {
+      font-size: 0.85rem;
+    }
+    
+    .product-card .product-body .product-stock.in-stock {
+      color: #4CAF50;
+    }
+    
+    .product-card .product-body .product-stock.low-stock {
+      color: #F9A825;
+    }
+    
+    .product-card .product-body .product-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .product-card .product-body .product-actions .btn {
+      flex: 1;
+      padding: 8px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+    }
+    
+    /* Section Titles */
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #0B3D2E;
+    }
+    
+    .section-subtitle {
+      font-size: 1rem;
+      color: #666;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    
+    .section-badge {
+      display: inline-block;
+      background: rgba(27, 94, 32, 0.06);
+      color: #1B5E20;
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    /* Stock Market Widget */
+    .stock-widget {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+    }
+    
+    .stock-widget .stock-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    
+    .stock-widget .stock-item:last-child {
+      border-bottom: none;
+    }
+    
+    .stock-widget .stock-item .stock-name {
+      font-weight: 600;
+      color: #0B3D2E;
+    }
+    
+    .stock-widget .stock-item .stock-price {
+      font-weight: 700;
+      color: #1B5E20;
+    }
+    
+    .stock-widget .stock-item .stock-change {
+      font-weight: 600;
+      padding: 2px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+    
+    .stock-widget .stock-item .stock-change.up {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    
+    .stock-widget .stock-item .stock-change.down {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+    }
+    
+    .stock-widget .stock-item .stock-volume {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    
+    /* Chart Container */
+    .chart-container {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+    }
+    
+    .chart-container canvas {
+      width: 100% !important;
+      height: 250px !important;
+    }
+    
+    /* Stat Cards */
+    .stat-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    
+    .stat-card .stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1B5E20;
+    }
+    
+    .stat-card .stat-label {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    .stat-card .stat-change {
+      font-size: 0.8rem;
+      color: #4CAF50;
+    }
+    
+    /* Market Insights Grid */
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    
+    .insight-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+    }
+    
+    .insight-card .insight-value {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #1B5E20;
+    }
+    
+    .insight-card .insight-label {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    .insight-card .insight-change {
+      font-size: 0.8rem;
+      padding: 2px 12px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+    
+    .insight-card .insight-change.up {
+      background: rgba(76, 175, 80, 0.1);
+      color: #4CAF50;
+    }
+    
+    .insight-card .insight-change.down {
+      background: rgba(244, 67, 54, 0.1);
+      color: #f44336;
+    }
+    
+    /* Footer */
+    .footer-premium {
+      background: #0B3D2E;
+      color: rgba(255,255,255,0.7);
+      padding: 60px 0 20px;
+    }
+    
+    .footer-premium h6 {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    
+    .footer-premium a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: block;
+      padding: 4px 0;
+    }
+    
+    .footer-premium a:hover {
+      color: #4CAF50;
+    }
+    
+    .footer-premium .social-icons a {
+      display: inline-block;
+      margin-right: 12px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .footer-premium .social-icons a:hover {
+      color: #4CAF50;
+    }
+    
+    .footer-premium .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .footer-premium .footer-bottom span {
+      color: #4CAF50;
+    }
+    
+    /* Navbar */
+    .navbar-premium {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      padding: 10px 0;
+    }
+    
+    .navbar-premium .nav-link {
+      color: #555 !important;
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 6px 16px !important;
+    }
+    
+    .navbar-premium .nav-link i {
+      margin-right: 6px;
+    }
+    
+    .navbar-premium .nav-link:hover {
+      color: #0B3D2E !important;
+    }
+    
+    .navbar-premium .nav-link.active {
+      color: #0B3D2E !important;
+      font-weight: 600;
+    }
+    
+    .navbar-premium .brand {
+      color: #0B3D2E;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    
+    .navbar-premium .brand i {
+      color: #4CAF50;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-marketplace .hero-title {
+        font-size: 2.5rem;
+      }
+      .insight-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-marketplace .hero-title {
+        font-size: 2rem;
+      }
+      .hero-marketplace {
+        min-height: 70vh;
+        padding: 40px 0;
+      }
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .product-card .product-image {
+        height: 160px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-marketplace .hero-title {
+        font-size: 1.6rem;
+      }
+      .hero-marketplace .hero-search .form-control {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+      }
+      .hero-marketplace .hero-search .btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+      }
+      .btn-primary-green,
+      .btn-outline-white {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ============================================
+  NAVBAR WITH ICONS
+  ============================================ -->
+  <nav class="navbar navbar-expand-lg navbar-premium sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand" href="/">
+        <i class="fas fa-leaf me-2"></i>Verdant Fields
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/marketplace"><i class="fas fa-store"></i>Marketplace</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mart"><i class="fas fa-shopping-bag"></i>Verdant Mart</a></li>
+          <li class="nav-item"><a class="nav-link" href="/education"><i class="fas fa-graduation-cap"></i>Education</a></li>
+          <li class="nav-item"><a class="nav-link" href="/farmers"><i class="fas fa-tractor"></i>Farmers</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a href="/auth/login" class="btn btn-sm" style="background: transparent; color: #0B3D2E; border: 1px solid #0B3D2E; border-radius: 50px; padding: 6px 20px;">Sign In</a>
+          <a href="/auth/register" class="btn btn-sm" style="background: #1B5E20; color: #ffffff; border-radius: 50px; padding: 6px 20px; border: none;">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+  HERO SECTION
+  ============================================ -->
+  <section class="hero-marketplace">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-lg-7">
+          <span class="badge mb-3" style="background: rgba(212, 160, 23, 0.2); color: #D4A017; padding: 6px 18px; border-radius: 50px; border: 1px solid rgba(212, 160, 23, 0.3);">
+            <i class="fas fa-circle me-2" style="color: #4CAF50; font-size: 0.4rem;"></i> AGRICULTURE MARKETPLACE
+          </span>
+          <h1 class="hero-title">
+            Connect with Farmers,<br>
+            <span class="highlight">Buy Fresh, Sell Smart</span>
+          </h1>
+          <p class="hero-subtitle">
+            Discover the largest agriculture marketplace connecting farmers directly with buyers, 
+            offering fresh produce, livestock, equipment, and agricultural inputs.
+          </p>
+          
+          <div class="hero-search">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for fresh produce, livestock, or equipment...">
+              <button class="btn"><i class="fas fa-search me-2"></i>Search</button>
+            </div>
+          </div>
+          
+          <div class="hero-categories">
+            <span class="cat-pill">🍎 Fruits</span>
+            <span class="cat-pill">🥬 Vegetables</span>
+            <span class="cat-pill">🌽 Cereals</span>
+            <span class="cat-pill">🐄 Livestock</span>
+            <span class="cat-pill">🌱 Seeds</span>
+            <span class="cat-pill">🧪 Fertilizers</span>
+            <span class="cat-pill">🚜 Equipment</span>
+            <span class="cat-pill">🌿 Organic</span>
+          </div>
+          
+          <div class="hero-buttons">
+            <a href="#" class="btn-primary-green">
+              <i class="fas fa-store me-2"></i>Explore Marketplace
+            </a>
+            <a href="#" class="btn-outline-white">
+              <i class="fas fa-user-plus me-2"></i>Become a Seller
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  LIVE STOCK MARKET WIDGET
+  ============================================ -->
+  <section class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div>
+        <span class="section-badge">Live Market</span>
+        <h2 class="section-title mt-1">Live Stock Exchange</h2>
+        <p class="section-subtitle">Real-time agricultural commodity prices</p>
+      </div>
+      <span class="badge" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50; padding: 8px 16px; border-radius: 50px;">
+        <i class="fas fa-circle" style="font-size: 0.5rem; margin-right: 6px;"></i> Live
+      </span>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="stock-widget">
+          <div class="stock-item">
+            <div>
+              <span class="stock-name">🌾 Wheat</span>
+              <span class="stock-volume">Volume: 45.2K</span>
+            </div>
+            <div>
+              <span class="stock-price">$287.31</span>
+              <span class="stock-change up">+1.8%</span>
+            </div>
+          </div>
+          <div class="stock-item">
+            <div>
+              <span class="stock-name">🌽 Maize</span>
+              <span class="stock-volume">Volume: 38.4K</span>
+            </div>
+            <div>
+              <span class="stock-price">$201.82</span>
+              <span class="stock-change down">-0.6%</span>
+            </div>
+          </div>
+          <div class="stock-item">
+            <div>
+              <span class="stock-name">☕ Coffee</span>
+              <span class="stock-volume">Volume: 22.3K</span>
+            </div>
+            <div>
+              <span class="stock-price">$378.20</span>
+              <span class="stock-change up">+4.1%</span>
+            </div>
+          </div>
+          <div class="stock-item">
+            <div>
+              <span class="stock-name">🍚 Rice</span>
+              <span class="stock-volume">Volume: 32.8K</span>
+            </div>
+            <div>
+              <span class="stock-price">$412.50</span>
+              <span class="stock-change up">+1.3%</span>
+            </div>
+          </div>
+          <div class="stock-item">
+            <div>
+              <span class="stock-name">🫘 Soybean</span>
+              <span class="stock-volume">Volume: 28.6K</span>
+            </div>
+            <div>
+              <span class="stock-price">$596.00</span>
+              <span class="stock-change down">-0.5%</span>
+            </div>
+          </div>
+          <div class="stock-item">
+            <div>
+              <span class="stock-name">🍵 Tea</span>
+              <span class="stock-volume">Volume: 12.1K</span>
+            </div>
+            <div>
+              <span class="stock-price">$145.30</span>
+              <span class="stock-change up">+0.8%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="chart-container">
+          <h6 style="font-weight: 600; color: #0B3D2E; margin-bottom: 12px;">Wheat Price Trend</h6>
+          <canvas id="wheatPriceChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  MARKET INSIGHTS
+  ============================================ -->
+  <section class="container py-3">
+    <div class="text-center mb-3">
+      <span class="section-badge">Market Intelligence</span>
+      <h2 class="section-title mt-1">Market Insights</h2>
+      <p class="section-subtitle mx-auto">Real-time agriculture market data and trends</p>
+    </div>
+    
+    <div class="row g-3">
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number">2,847</div>
+          <div class="stat-label">Total Products</div>
+          <div class="stat-change">↑ 12.5%</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number">1,234</div>
+          <div class="stat-label">Active Farmers</div>
+          <div class="stat-change">↑ 8.3%</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number">3,567</div>
+          <div class="stat-label">Active Buyers</div>
+          <div class="stat-change">↑ 15.7%</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="stat-card">
+          <div class="stat-number">892</div>
+          <div class="stat-label">Orders Today</div>
+          <div class="stat-change">↑ 6.2%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FEATURED PRODUCTS
+  ============================================ -->
+  <section class="py-4" style="background: #f5f7f5;">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+          <span class="section-badge">Products</span>
+          <h2 class="section-title mt-1">Featured Products</h2>
+        </div>
+        <a href="#" class="btn-outline-green">View All →</a>
+      </div>
+      
+      <div class="row g-3">
+        <!-- Product 1 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1597362925123-77861d3fbac7?w=400&q=80');">
+              <span class="badge-organic">🌿 Organic</span>
+              <span class="badge-verified">✓ Verified</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Organic Tomatoes</div>
+              <div class="product-price">$4.99 <small style="font-size: 0.7rem; color: #888;">/ kg</small></div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Green Valley Farm</div>
+              <div class="product-rating">★★★★★ (124)</div>
+              <div class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i>In Stock (200 kg)</div>
+              <div class="product-actions">
+                <button class="btn btn-primary-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-cart-plus me-1"></i>Add</button>
+                <button class="btn btn-outline-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&q=80');">
+              <span class="badge-organic">🌿 Organic</span>
+              <span class="badge-verified">✓ Verified</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Fresh Strawberries</div>
+              <div class="product-price">$6.99 <small style="font-size: 0.7rem; color: #888;">/ kg</small></div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Berry Bliss Farm</div>
+              <div class="product-rating">★★★★★ (89)</div>
+              <div class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i>In Stock (150 kg)</div>
+              <div class="product-actions">
+                <button class="btn btn-primary-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-cart-plus me-1"></i>Add</button>
+                <button class="btn btn-outline-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=400&q=80');">
+              <span class="badge-verified">✓ Verified</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Mixed Vegetables</div>
+              <div class="product-price">$8.99 <small style="font-size: 0.7rem; color: #888;">/ kg</small></div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Sunshine Farm</div>
+              <div class="product-rating">★★★★★ (203)</div>
+              <div class="product-stock in-stock"><i class="fas fa-check-circle me-1"></i>In Stock (100 kg)</div>
+              <div class="product-actions">
+                <button class="btn btn-primary-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-cart-plus me-1"></i>Add</button>
+                <button class="btn btn-outline-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="col-lg-3 col-md-4 col-6">
+          <div class="product-card">
+            <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1582284540020-8acbe03f4924?w=400&q=80');">
+              <span class="badge-organic">🌿 Organic</span>
+            </div>
+            <div class="product-body">
+              <div class="product-name">Fresh Herbs Bundle</div>
+              <div class="product-price">$3.99 <small style="font-size: 0.7rem; color: #888;">/ bunch</small></div>
+              <div class="product-farmer"><i class="fas fa-user me-1"></i>Herbal Heaven</div>
+              <div class="product-rating">★★★★★ (56)</div>
+              <div class="product-stock low-stock"><i class="fas fa-exclamation-triangle me-1"></i>Low Stock (25)</div>
+              <div class="product-actions">
+                <button class="btn btn-primary-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="fas fa-cart-plus me-1"></i>Add</button>
+                <button class="btn btn-outline-green" style="padding: 6px 12px; font-size: 0.8rem;"><i class="far fa-heart"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  PRODUCT CATEGORIES
+  ============================================ -->
+  <section class="container py-4">
+    <div class="text-center mb-3">
+      <span class="section-badge">Categories</span>
+      <h2 class="section-title mt-1">Shop by Category</h2>
+      <p class="section-subtitle mx-auto">Find exactly what you need from our diverse agriculture categories</p>
+    </div>
+    
+    <div class="row g-3">
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-apple-alt"></i></div>
+          <div class="card-title">Fruits</div>
+          <div class="card-text">120+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-carrot"></i></div>
+          <div class="card-title">Vegetables</div>
+          <div class="card-text">85+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-seedling"></i></div>
+          <div class="card-title">Cereals</div>
+          <div class="card-text">60+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-horse"></i></div>
+          <div class="card-title">Livestock</div>
+          <div class="card-text">30+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-leaf"></i></div>
+          <div class="card-title">Seeds</div>
+          <div class="card-text">45+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-flask"></i></div>
+          <div class="card-title">Fertilizers</div>
+          <div class="card-text">25+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-tractor"></i></div>
+          <div class="card-title">Farm Equipment</div>
+          <div class="card-text">35+ Products</div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-certificate"></i></div>
+          <div class="card-title">Organic Products</div>
+          <div class="card-text">40+ Products</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  BUYER PROTECTION
+  ============================================ -->
+  <section class="py-4" style="background: #f5f7f5;">
+    <div class="container">
+      <div class="text-center mb-3">
+        <span class="section-badge">Protection</span>
+        <h2 class="section-title mt-1">Buyer Protection</h2>
+        <p class="section-subtitle mx-auto">Your safety and satisfaction are our priority</p>
+      </div>
+      
+      <div class="row g-3">
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="card-title">Verified Sellers</div>
+            <div class="card-text">All sellers are verified</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-lock"></i></div>
+            <div class="card-title">Secure Payments</div>
+            <div class="card-text">Bank-level security</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+            <div class="card-title">Quality Assurance</div>
+            <div class="card-text">Guaranteed quality</div>
+          </div>
+        </div>
+        <div class="col-md-3 col-6">
+          <div class="card-premium text-center">
+            <div class="card-icon"><i class="fas fa-truck"></i></div>
+            <div class="card-title">Delivery Tracking</div>
+            <div class="card-text">Real-time tracking</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  MARKETPLACE FEATURES
+  ============================================ -->
+  <section class="container py-4">
+    <div class="text-center mb-3">
+      <span class="section-badge">Features</span>
+      <h2 class="section-title mt-1">Marketplace Features</h2>
+      <p class="section-subtitle mx-auto">Discover the best of our agriculture marketplace</p>
+    </div>
+    
+    <div class="row g-3">
+      <div class="col-md-3 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-fire"></i></div>
+          <div class="card-title">Trending Products</div>
+          <div class="card-text">Most popular this week</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-clock"></i></div>
+          <div class="card-title">Recently Added</div>
+          <div class="card-text">Newest products</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-trophy"></i></div>
+          <div class="card-title">Top Farmers</div>
+          <div class="card-text">Highest rated</div>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="card-premium text-center">
+          <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="card-title">Nearby Farmers</div>
+          <div class="card-text">In your area</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FOOTER
+  ============================================ -->
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <h5 style="color: #4CAF50;"><i class="fas fa-leaf me-2"></i>Verdant Fields</h5>
+          <p style="font-size: 0.85rem; opacity: 0.6;">Connecting farmers to markets, freshness to homes.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>Company</h6>
+          <a href="#">About Us</a>
+          <a href="#">Our Mission</a>
+          <a href="#">Leadership</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>Platform</h6>
+          <a href="/marketplace">Marketplace</a>
+          <a href="/education">Education</a>
+          <a href="/farmers">Farmer Portal</a>
+          <a href="#">Buyer Portal</a>
+          <a href="#">Logistics</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>Resources</h6>
+          <a href="#">Help Center</a>
+          <a href="#">FAQs</a>
+          <a href="#">Blog</a>
+          <a href="#">Documentation</a>
+          <a href="#">Research</a>
+        </div>
+      </div>
+      <div class="row g-4 mt-3">
+        <div class="col-md-4">
+          <h6>Contact</h6>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-envelope me-2"></i>info@verdantfields.com</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-phone me-2"></i>+1 234 567 8900</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-map-marker-alt me-2"></i>123 Agriculture Ave, Kigali, Rwanda</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Newsletter</h6>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Your email" style="border-radius: 50px 0 0 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #ffffff;">
+            <button class="btn" style="background: #4CAF50; color: #ffffff; border-radius: 0 50px 50px 0; border: none;">Subscribe</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h6>Legal</h6>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Verdant Fields Rwanda. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.5;">Driven by Tech, Grounded in Nature.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+  SCRIPTS
+  ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Wheat Price Chart
+    const ctx = document.getElementById('wheatPriceChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'Wheat Price ($)',
+          data: [280, 285, 282, 288, 290, 287, 287.31],
+          borderColor: '#1B5E20',
+          backgroundColor: 'rgba(27, 94, 32, 0.05)',
+          borderWidth: 2,
+          pointRadius: 3,
+          pointBackgroundColor: '#1B5E20',
+          fill: true,
+          tension: 0.3
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: false,
+            grid: {
+              color: 'rgba(0,0,0,0.04)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+    
+    console.log('🌾 Verdant Fields Marketplace loaded with Live Stock Exchange');
+  </script>
+</body>
+</html>

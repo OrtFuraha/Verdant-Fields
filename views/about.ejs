@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Verdant Fields</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold">About <span class="text-success">Verdant Fields</span></h1>
+        <p class="lead text-muted">Connecting Farmers to Markets, Freshness to Homes.</p>
+        <p class="mt-4">Verdant Fields is a modern agriculture marketplace that connects farmers, buyers, customers, delivery riders, and administrators on one platform. We're building a sustainable agriculture ecosystem where everyone benefits.</p>
+        <p>Our mission is to empower farmers with direct access to markets, provide customers with fresh organic produce, and create a transparent, efficient supply chain from farm to table.</p>
+        <div class="row mt-4">
+          <div class="col-4">
+            <div class="text-center">
+              <h3 class="text-success">2024</h3>
+              <p class="text-muted">Founded</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="text-center">
+              <h3 class="text-success">20K+</h3>
+              <p class="text-muted">Farmers</p>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="text-center">
+              <h3 class="text-success">150K+</h3>
+              <p class="text-muted">Customers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop" class="img-fluid rounded-4 shadow-lg" alt="About Verdant Fields">
+      </div>
+    </div>
+    
+    <div class="row mt-5 pt-5">
+      <div class="col-12 text-center">
+        <h2 class="mb-4">Our Values</h2>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="icon-wrapper"><i class="fas fa-handshake"></i></div>
+          <h6>Trust & Transparency</h6>
+          <p>Building trust through transparent pricing and direct farmer connections.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="icon-wrapper"><i class="fas fa-leaf"></i></div>
+          <h6>Sustainability</h6>
+          <p>Promoting sustainable farming practices and reducing food waste.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="icon-wrapper"><i class="fas fa-users"></i></div>
+          <h6>Community</h6>
+          <p>Building a strong community of farmers, buyers, and customers.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

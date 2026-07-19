@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Farmers - Verdant Fields</title>
+  
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <style>
+    :root {
+      --primary-dark: #0B3D2E;
+      --primary: #1B5E20;
+      --primary-light: #2E7D32;
+      --secondary: #4CAF50;
+      --gold: #D4A017;
+      --gold-light: #F5D06B;
+      --earth: #5D4037;
+      --light-gray: #f5f7f5;
+      --white: #ffffff;
+      --shadow: 0 4px 20px rgba(0,0,0,0.06);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.1);
+      --radius: 16px;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8faf8;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+    
+    /* Remove all animations */
+    * {
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    /* Hero Section - No overlay */
+    .hero-farmers {
+      min-height: 85vh;
+      background: url('/images/Farmer mage Jul 19, 2026, 12_14_35 PM.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 80px 0;
+    }
+    
+    .hero-farmers .hero-content {
+      position: relative;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 40px 50px;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
+      max-width: 700px;
+    }
+    
+    .hero-farmers .hero-title {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      color: #ffffff;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      margin-bottom: 16px;
+    }
+    
+    .hero-farmers .hero-title .highlight {
+      color: #4CAF50;
+    }
+    
+    .hero-farmers .hero-subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      line-height: 1.8;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      margin-bottom: 24px;
+    }
+    
+    .hero-farmers .hero-badge {
+      display: inline-block;
+      background: rgba(212, 160, 23, 0.2);
+      color: #D4A017;
+      padding: 6px 18px;
+      border-radius: 50px;
+      border: 1px solid rgba(212, 160, 23, 0.3);
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    
+    .hero-farmers .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    
+    .btn-primary-green {
+      background: #1B5E20;
+      color: #ffffff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: none;
+    }
+    
+    .btn-primary-green:hover {
+      background: #0B3D2E;
+      color: #ffffff;
+    }
+    
+    .btn-outline-white {
+      background: transparent;
+      color: #ffffff;
+      padding: 14px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.1);
+      color: #ffffff;
+    }
+    
+    /* Weather Section */
+    .weather-section {
+      padding: 60px 0;
+      background: #f8faf8;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #0B3D2E;
+    }
+    
+    .section-subtitle {
+      font-size: 1rem;
+      color: #666;
+      max-width: 600px;
+      line-height: 1.7;
+    }
+    
+    .section-badge {
+      display: inline-block;
+      background: rgba(27, 94, 32, 0.06);
+      color: #1B5E20;
+      padding: 4px 16px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .weather-card {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 30px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+    
+    .weather-card .weather-temp {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #0B3D2E;
+    }
+    
+    .weather-card .weather-condition {
+      font-size: 1.1rem;
+      color: #555;
+    }
+    
+    .weather-card .weather-icon {
+      font-size: 4rem;
+      color: #D4A017;
+    }
+    
+    .weather-details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    
+    .weather-detail-item {
+      display: flex;
+      flex-direction: column;
+      padding: 12px;
+      background: rgba(27, 94, 32, 0.03);
+      border-radius: 10px;
+    }
+    
+    .weather-detail-item .label {
+      font-size: 0.8rem;
+      color: #888;
+    }
+    
+    .weather-detail-item .value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0B3D2E;
+    }
+    
+    .chart-container {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 24px;
+      border: 1px solid rgba(0,0,0,0.04);
+      box-shadow: var(--shadow);
+      height: 100%;
+    }
+    
+    .chart-container canvas {
+      width: 100% !important;
+      height: 250px !important;
+    }
+    
+    /* Navbar */
+    .navbar-premium {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+      padding: 10px 0;
+    }
+    
+    .navbar-premium .nav-link {
+      color: #555 !important;
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 6px 16px !important;
+    }
+    
+    .navbar-premium .nav-link i {
+      margin-right: 6px;
+    }
+    
+    .navbar-premium .nav-link:hover {
+      color: #0B3D2E !important;
+    }
+    
+    .navbar-premium .nav-link.active {
+      color: #0B3D2E !important;
+      font-weight: 600;
+    }
+    
+    .navbar-premium .brand {
+      color: #0B3D2E;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+    
+    .navbar-premium .brand i {
+      color: #4CAF50;
+    }
+    
+    /* Footer */
+    .footer-premium {
+      background: #0B3D2E;
+      color: rgba(255,255,255,0.7);
+      padding: 40px 0 20px;
+    }
+    
+    .footer-premium h6 {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    
+    .footer-premium a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      display: block;
+      padding: 4px 0;
+    }
+    
+    .footer-premium a:hover {
+      color: #4CAF50;
+    }
+    
+    .footer-premium .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 20px;
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+    }
+    
+    .footer-premium .social-icons a {
+      display: inline-block;
+      margin-right: 12px;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.5);
+    }
+    
+    .footer-premium .social-icons a:hover {
+      color: #4CAF50;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+      .hero-farmers .hero-title {
+        font-size: 2.5rem;
+      }
+      .hero-farmers .hero-content {
+        padding: 30px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .hero-farmers .hero-title {
+        font-size: 2rem;
+      }
+      .hero-farmers {
+        min-height: 70vh;
+        padding: 40px 0;
+      }
+      .hero-farmers .hero-content {
+        padding: 20px;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .weather-card .weather-temp {
+        font-size: 2.5rem;
+      }
+      .weather-details-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-farmers .hero-title {
+        font-size: 1.6rem;
+      }
+      .hero-farmers .hero-content {
+        padding: 16px;
+      }
+      .btn-primary-green,
+      .btn-outline-white {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+      }
+      .hero-farmers .hero-buttons {
+        flex-direction: column;
+      }
+      .weather-details-grid {
+        grid-template-columns: 1fr;
+      }
+      .weather-card .weather-temp {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- ============================================
+  NAVBAR
+  ============================================ -->
+  <nav class="navbar navbar-expand-lg navbar-premium sticky-top">
+    <div class="container">
+      <a class="navbar-brand brand" href="/">
+        <i class="fas fa-leaf me-2"></i>Verdant Fields
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i>Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/marketplace"><i class="fas fa-store"></i>Marketplace</a></li>
+          <li class="nav-item"><a class="nav-link" href="/mart"><i class="fas fa-shopping-bag"></i>Verdant Mart</a></li>
+          <li class="nav-item"><a class="nav-link" href="/education"><i class="fas fa-graduation-cap"></i>Education</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/farmers"><i class="fas fa-tractor"></i>Farmers</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a href="/auth/login" class="btn btn-sm" style="background: transparent; color: #0B3D2E; border: 1px solid #0B3D2E; border-radius: 50px; padding: 6px 20px;">Sign In</a>
+          <a href="/auth/register" class="btn btn-sm" style="background: #1B5E20; color: #ffffff; border-radius: 50px; padding: 6px 20px; border: none;">Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================
+  HERO SECTION - No Overlay
+  ============================================ -->
+  <section class="hero-farmers">
+    <div class="container hero-content">
+      <span class="hero-badge">
+        <i class="fas fa-circle me-2" style="color: #4CAF50; font-size: 0.4rem;"></i> DIGITAL FARM MANAGEMENT
+      </span>
+      <h1 class="hero-title">
+        Empowering Farmers with<br>
+        <span class="highlight">Digital Tools & Insights</span>
+      </h1>
+      <p class="hero-subtitle">
+        Manage your farm operations, track revenue, monitor crop health, 
+        and access AI-powered recommendations all in one place.
+      </p>
+      <div class="hero-buttons">
+        <a href="#" class="btn-primary-green">
+          <i class="fas fa-tachometer-alt me-2"></i>Go to Dashboard
+        </a>
+        <a href="#" class="btn-outline-white">
+          <i class="fas fa-plus-circle me-2"></i>Add New Farm
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  TODAY'S WEATHER WITH CHART
+  ============================================ -->
+  <section class="weather-section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-badge">Weather</span>
+        <h2 class="section-title mt-2">Today's Weather Forecast</h2>
+        <p class="section-subtitle mx-auto">Real-time weather data for your farm location</p>
+      </div>
+      
+      <div class="row g-4">
+        <!-- Weather Card -->
+        <div class="col-lg-4">
+          <div class="weather-card">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <div style="font-size: 0.9rem; color: #888;">Today</div>
+                <div class="weather-temp">28°C</div>
+                <div class="weather-condition">Sunny with light clouds</div>
+              </div>
+              <div class="weather-icon"><i class="fas fa-sun"></i></div>
+            </div>
+            
+            <div class="weather-details-grid">
+              <div class="weather-detail-item">
+                <span class="label">Rain Forecast</span>
+                <span class="value">0%</span>
+              </div>
+              <div class="weather-detail-item">
+                <span class="label">Wind Speed</span>
+                <span class="value">12 km/h</span>
+              </div>
+              <div class="weather-detail-item">
+                <span class="label">Humidity</span>
+                <span class="value">65%</span>
+              </div>
+              <div class="weather-detail-item">
+                <span class="label">UV Index</span>
+                <span class="value">Moderate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Weather Chart -->
+        <div class="col-lg-8">
+          <div class="chart-container">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 style="font-weight: 600; color: #0B3D2E; margin: 0;">
+                <i class="fas fa-chart-line me-2"></i>5-Day Weather Forecast
+              </h6>
+              <span class="badge" style="background: rgba(76, 175, 80, 0.1); color: #4CAF50; padding: 4px 12px;">
+                <i class="fas fa-circle" style="font-size: 0.4rem; margin-right: 4px;"></i> Live
+              </span>
+            </div>
+            <canvas id="weatherChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FOOTER
+  ============================================ -->
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6">
+          <h5 style="color: #4CAF50;"><i class="fas fa-leaf me-2"></i>Verdant Fields</h5>
+          <p style="font-size: 0.85rem; opacity: 0.6;">Connecting farmers to markets, freshness to homes.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>Company</h6>
+          <a href="#">About Us</a>
+          <a href="#">Our Mission</a>
+          <a href="#">Leadership</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>Platform</h6>
+          <a href="/marketplace">Marketplace</a>
+          <a href="/education">Education</a>
+          <a href="/farmers">Farmer Portal</a>
+          <a href="#">Buyer Portal</a>
+          <a href="#">Logistics</a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <h6>Resources</h6>
+          <a href="#">Help Center</a>
+          <a href="#">FAQs</a>
+          <a href="#">Blog</a>
+          <a href="#">Documentation</a>
+          <a href="#">Research</a>
+        </div>
+      </div>
+      <div class="row g-4 mt-3">
+        <div class="col-md-4">
+          <h6>Contact</h6>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-envelope me-2"></i>info@verdantfields.com</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-phone me-2"></i>+250 788 123 456</p>
+          <p style="font-size: 0.85rem; opacity: 0.6;"><i class="fas fa-map-marker-alt me-2"></i>KN 2 St, Kigali, Rwanda</p>
+        </div>
+        <div class="col-md-4">
+          <h6>Newsletter</h6>
+          <div class="input-group">
+            <input type="email" class="form-control" placeholder="Your email" style="border-radius: 50px 0 0 50px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #ffffff;">
+            <button class="btn" style="background: #4CAF50; color: #ffffff; border-radius: 0 50px 50px 0; border: none;">Subscribe</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <h6>Legal</h6>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Refund Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Verdant Fields Rwanda. All Rights Reserved.</p>
+        <p style="font-size: 0.8rem; opacity: 0.5;">Driven by Tech, Grounded in Nature.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+  SCRIPTS
+  ============================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Weather Chart - 5-Day Forecast
+    const ctx = document.getElementById('weatherChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Today', 'Tue', 'Wed', 'Thu', 'Fri'],
+        datasets: [
+          {
+            label: 'Temperature °C',
+            data: [28, 26, 30, 27, 25],
+            borderColor: '#1B5E20',
+            backgroundColor: 'rgba(27, 94, 32, 0.05)',
+            borderWidth: 3,
+            pointRadius: 5,
+            pointBackgroundColor: '#1B5E20',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            fill: true,
+            tension: 0.3,
+            yAxisID: 'y'
+          },
+          {
+            label: 'Rainfall %',
+            data: [0, 20, 5, 40, 15],
+            borderColor: '#D4A017',
+            backgroundColor: 'rgba(212, 160, 23, 0.05)',
+            borderWidth: 2,
+            pointRadius: 4,
+            pointBackgroundColor: '#D4A017',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            fill: false,
+            tension: 0.3,
+            borderDash: [5, 5],
+            yAxisID: 'y1'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          mode: 'index',
+          intersect: false
+        },
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: {
+              usePointStyle: true,
+              pointStyle: 'circle',
+              padding: 20
+            }
+          }
+        },
+        scales: {
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            beginAtZero: false,
+            grid: {
+              color: 'rgba(0,0,0,0.04)'
+            },
+            ticks: {
+              callback: function(value) {
+                return value + '°C';
+              }
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            beginAtZero: true,
+            max: 100,
+            grid: {
+              drawOnChartArea: false
+            },
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    console.log('🌾 Farmers page loaded - Weather with chart');
+    console.log('☀️ Real-time weather data displayed');
+  </script>
+</body>
+</html>

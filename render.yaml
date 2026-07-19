@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: verdant-fields
+    runtime: node
+    repo: https://github.com/OrtFuraha/Verdant-Fields
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 8880
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: admin@verdantfields.com
+      - key: ADMIN_PASSWORD
+        value: admin123
+    buildCommand: npm install
+    startCommand: node server.js

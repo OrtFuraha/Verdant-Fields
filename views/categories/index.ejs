@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - Verdant Fields</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="bg-success text-white py-4">
+    <div class="container">
+      <h1><i class="fas fa-tags me-3"></i>Product Categories</h1>
+      <p class="lead">Browse our wide range of fresh agricultural products</p>
+    </div>
+  </div>
+  
+  <div class="container py-4">
+    <div class="row g-4">
+      <!-- Vegetables -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/vegetables" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #E8F5E9, #C8E6C9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #2E7D32;">
+              <i class="fas fa-carrot"></i>
+            </div>
+            <h5 class="text-dark">Vegetables</h5>
+            <p class="text-muted">120+ Products</p>
+            <span class="badge bg-success">Fresh</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Fruits -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/fruits" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FFF3E0, #FFE0B2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #E65100;">
+              <i class="fas fa-apple-alt"></i>
+            </div>
+            <h5 class="text-dark">Fruits</h5>
+            <p class="text-muted">85+ Products</p>
+            <span class="badge bg-success">Fresh</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Organic Foods -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/organic" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #E8F5E9, #A5D6A7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #1B5E20;">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h5 class="text-dark">Organic Foods</h5>
+            <p class="text-muted">60+ Products</p>
+            <span class="badge bg-warning text-dark">Organic</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Seeds -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/seeds" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #F3E5F5, #CE93D8); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #6A1B9A;">
+              <i class="fas fa-seedling"></i>
+            </div>
+            <h5 class="text-dark">Seeds</h5>
+            <p class="text-muted">45+ Products</p>
+            <span class="badge bg-info text-white">Premium</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Livestock -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/livestock" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FBE9E7, #FFAB91); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #BF360C;">
+              <i class="fas fa-horse"></i>
+            </div>
+            <h5 class="text-dark">Livestock</h5>
+            <p class="text-muted">30+ Products</p>
+            <span class="badge bg-danger text-white">Limited</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Dairy -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/dairy" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #E3F2FD, #90CAF9); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #0D47A1;">
+              <i class="fas fa-cheese"></i>
+            </div>
+            <h5 class="text-dark">Dairy</h5>
+            <p class="text-muted">40+ Products</p>
+            <span class="badge bg-primary text-white">Fresh</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Beverages -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/beverages" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #FFF8E1, #FFD54F); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #F57F17;">
+              <i class="fas fa-wine-bottle"></i>
+            </div>
+            <h5 class="text-dark">Beverages</h5>
+            <p class="text-muted">25+ Products</p>
+            <span class="badge bg-warning text-dark">New</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Equipment -->
+      <div class="col-lg-3 col-md-4 col-6">
+        <a href="/categories/equipment" class="text-decoration-none">
+          <div class="category-card h-100 shadow-sm" style="transition: all 0.3s ease;">
+            <div class="icon-wrapper" style="width: 80px; height: 80px; background: linear-gradient(135deg, #ECEFF1, #B0BEC5); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 2.5rem; color: #37474F;">
+              <i class="fas fa-tractor"></i>
+            </div>
+            <h5 class="text-dark">Equipment</h5>
+            <p class="text-muted">35+ Products</p>
+            <span class="badge bg-secondary text-white">Tools</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

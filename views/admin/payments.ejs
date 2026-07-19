@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('../partials/navbar') %>
+  
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="list-group shadow-sm">
+          <a href="/admin" class="list-group-item list-group-item-action">
+            <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+          </a>
+          <a href="/admin/users" class="list-group-item list-group-item-action">
+            <i class="fas fa-users me-2"></i>Users
+          </a>
+          <a href="/admin/products" class="list-group-item list-group-item-action">
+            <i class="fas fa-box me-2"></i>Products
+          </a>
+          <a href="/admin/orders" class="list-group-item list-group-item-action">
+            <i class="fas fa-shopping-bag me-2"></i>Orders
+          </a>
+          <a href="/admin/payments" class="list-group-item list-group-item-action active bg-success border-success">
+            <i class="fas fa-credit-card me-2"></i>Payments
+          </a>
+          <a href="/admin/deliveries" class="list-group-item list-group-item-action">
+            <i class="fas fa-truck me-2"></i>Deliveries
+          </a>
+          <a href="/admin/categories" class="list-group-item list-group-item-action">
+            <i class="fas fa-tags me-2"></i>Categories
+          </a>
+          <a href="/admin/coupons" class="list-group-item list-group-item-action">
+            <i class="fas fa-gift me-2"></i>Coupons
+          </a>
+          <a href="/admin/analytics" class="list-group-item list-group-item-action">
+            <i class="fas fa-chart-line me-2"></i>Analytics
+          </a>
+          <a href="/admin/settings" class="list-group-item list-group-item-action">
+            <i class="fas fa-cog me-2"></i>Settings
+          </a>
+        </div>
+      </div>
+      
+      <div class="col-md-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h4><i class="fas fa-credit-card text-success me-2"></i>Manage Payments</h4>
+          <div>
+            <span class="badge bg-success me-2"><i class="fas fa-circle me-1"></i>Total: $45,230</span>
+          </div>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Total Revenue</h6>
+                <h3 class="text-success">$45,230</h3>
+                <small><i class="fas fa-arrow-up text-success me-1"></i>12.5% increase</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Pending Payments</h6>
+                <h3 class="text-warning">$3,450</h3>
+                <small><i class="fas fa-clock me-1"></i>8 transactions</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Today's Transactions</h6>
+                <h3 class="text-info">$2,890</h3>
+                <small><i class="fas fa-calendar me-1"></i>24 transactions</small>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="card shadow-sm">
+              <div class="card-body">
+                <h6 class="text-muted">Refunds</h6>
+                <h3 class="text-danger">$420</h3>
+                <small><i class="fas fa-arrow-down text-danger me-1"></i>3 refunds</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Payments Table -->
+        <div class="card shadow-sm">
+          <div class="card-header bg-white">
+            <div class="row g-2">
+              <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Search transactions...">
+              </div>
+              <div class="col-md-3">
+                <select class="form-select">
+                  <option>All Status</option>
+                  <option>Completed</option>
+                  <option>Pending</option>
+                  <option>Failed</option>
+                  <option>Refunded</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <select class="form-select">
+                  <option>All Methods</option>
+                  <option>Card</option>
+                  <option>Mobile Money</option>
+                  <option>Wallet</option>
+                  <option>Cash</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-success w-100">Filter</button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Transaction ID</th>
+                    <th>Customer</th>
+                    <th>Amount</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>#TXN-2024-001</td>
+                    <td>John Doe</td>
+                    <td>$124.50</td>
+                    <td><span class="badge bg-info">Card</span></td>
+                    <td><span class="badge bg-success">Completed</span></td>
+                    <td>2024-12-15</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-sm btn-outline-success"><i class="fas fa-print"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#TXN-2024-002</td>
+                    <td>Jane Smith</td>
+                    <td>$89.00</td>
+                    <td><span class="badge bg-warning">Mobile Money</span></td>
+                    <td><span class="badge bg-warning">Pending</span></td>
+                    <td>2024-12-14</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-sm btn-outline-success"><i class="fas fa-print"></i></button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>#TXN-2024-003</td>
+                    <td>Mike Johnson</td>
+                    <td>$250.00</td>
+                    <td><span class="badge bg-success">Wallet</span></td>
+                    <td><span class="badge bg-danger">Failed</span></td>
+                    <td>2024-12-14</td>
+                    <td>
+                      <button class="btn btn-sm btn-outline-primary"><i class="fas fa-eye"></i></button>
+                      <button class="btn btn-sm btn-outline-success"><i class="fas fa-print"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <%- include('../partials/footer') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
